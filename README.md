@@ -1,8 +1,7 @@
-# Portfolio QA — Yoel Almirón
+# Portfolio Tester — Yoel Almirón (Ingeniero en Sistemas)
 
-Landing page personal + páginas internas de proyecto, construida con HTML, CSS y JavaScript
-puro (sin frameworks). Pensada para GitHub Pages, con estética de terminal / reporte de
-ejecución de pruebas.
+Buenas! este proyecto es una Landing page personal + páginas internas de proyecto, construida con HTML, CSS y JavaScript
+puro (sin frameworks). Pensada para GitHub Pages, con estadistica y información de mi Portfolio.
 
 ## Estructura del proyecto
 
@@ -45,29 +44,7 @@ Luego abrir `http://localhost:8000` en el navegador.
 
 ## Deploy en GitHub Pages
 
-1. Crear un repositorio (por ejemplo `portfolio-qa`) y subir todo el contenido de esta
-   carpeta a la rama `main`.
-2. En GitHub → **Settings → Pages**, elegir como fuente la rama `main` y la carpeta `/ (root)`.
-3. GitHub Pages publicará el sitio en:
-   `https://<tu-usuario>.github.io/<nombre-del-repositorio>/`
-4. Todas las rutas del proyecto son relativas (`styles.css`, `data/projects.js`,
-   `projects/<slug>/index.html`, etc.), por lo que funcionan tanto en la raíz de un dominio
-   propio como en un subpath de GitHub Pages, sin necesidad de ajustar nada.
-
-## Reemplazar URLs de ejemplo
-
-Antes de publicar, reemplazar los enlaces temporales por los reales:
-
-| Dónde | Qué reemplazar |
-|---|---|
-| `index.html` (hero y contacto) | `https://github.com/yoelalmiron`, `https://www.linkedin.com/in/yoelalmiron`, `mailto:yoel.almiron.qa@gmail.com` |
-| `data/projects.js` | `repositoryUrl` y `deployUrl` de cada proyecto |
-| `projects/<slug>/index.html` | Los mismos enlaces de repositorio y deploy dentro del hero de cada página interna |
-| `index.html` y `projects/robot-framework-level-2/index.html` | ruta al certificado real en `assets/certificates/` |
-
-Un `deployUrl` vacío (`""`) hace que la landing muestre automáticamente el enlace como
-**"Deploy (pendiente)"** en lugar de un enlace roto — no hace falta borrar el campo, alcanza
-con dejarlo vacío hasta tener el deploy real.
+`deployUrl` url (`"https://yoelalmiron1997.github.io/portfolio/"`)
 
 ## Agregar un proyecto nuevo
 
@@ -114,10 +91,3 @@ incluidas las páginas internas de proyecto.
 - **Responsive**: mobile-first con breakpoints en 1080px y 720px. El menú de navegación
   colapsa en un desplegable por debajo de 720px.
 
-## Notas
-
-- El panel de ejecución de pruebas en el hero es **contenido ilustrativo**, aclarado
-  explícitamente en la propia página — no representa métricas reales de un proyecto en
-  producción.
-- Ninguna sección de las páginas internas incluye resultados o evidencia inventada: donde
-  todavía no hay contenido real, se muestra un texto honesto indicándolo.
