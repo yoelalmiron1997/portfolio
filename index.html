@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yoel Almirón — Tester de Software</title>
+  <meta
+    name="description"
+    content="Portfolio de Yoel Almirón, tester de software e Ingeniero en Sistemas de Información. Testing manual y automatizado, automatización con Robot Framework y Python, validación de APIs."
+  />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <header class="site-nav">
+    <nav class="wrap" aria-label="Navegación principal">
+      <a href="#top" class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        yoel@qa-portfolio
+      </a>
+      <button
+        class="nav-toggle"
+        type="button"
+        data-nav-toggle
+        aria-expanded="false"
+        aria-controls="primary-nav"
+      >
+        menu
+      </button>
+      <ul class="nav-links" id="primary-nav" data-nav-links>
+        <li><a href="#sobre-mi">sobre-mi</a></li>
+        <li><a href="#tecnologias">tecnologias</a></li>
+        <li><a href="#proyectos">proyectos</a></li>
+        <li><a href="#formacion">formacion</a></li>
+        <li><a href="#contacto">contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <p class="hero-kicker">
+            <strong>Yoel Almirón</strong> — Ingeniero en Sistemas de Información · Software QA Engineer
+          </p>
+          <h1>Tester de software: automatización y evidencia</h1>
+          <p class="lead">
+            Desarrollo proyectos orientados a testing, automatización de pruebas y validación de
+            APIs. Cada proyecto muestra cómo pienso, diseño y ejecuto pruebas como tester.
+          </p>
+          <div class="btn-row">
+            <a href="#proyectos" class="btn btn-primary">Explorar proyectos</a>
+            <a
+              href="https://github.com/yoelalmiron1997"
+              class="btn btn-ghost"
+              target="_blank"
+              rel="noopener noreferrer"
+              >GitHub</a
+            >
+            <a
+              href="https://www.linkedin.com/in/yoel-almiron/"
+              class="btn btn-ghost"
+              target="_blank"
+              rel="noopener noreferrer"
+              >LinkedIn</a
+            >
+          </div>
+        </div>
+
+        <div class="terminal" role="img" aria-label="Panel ilustrativo de ejecución de una suite de pruebas">
+          <div class="terminal-bar">
+            <span class="tdot" aria-hidden="true"></span>
+            <span class="tdot" aria-hidden="true"></span>
+            <span class="tdot" aria-hidden="true"></span>
+            <span>suite_execution.log</span>
+          </div>
+          <div class="terminal-body">
+            <div><span class="prompt">$</span> <span class="cmd">robot --outputdir results suites/regression</span></div>
+            <br />
+            <div class="terminal-line" style="animation-delay:0.1s">
+              <span class="name">test_login_valid_credentials</span>
+              <span class="pass">PASS</span>
+            </div>
+            <div class="terminal-line" style="animation-delay:0.25s">
+              <span class="name">test_api_response_schema</span>
+              <span class="pass">PASS</span>
+            </div>
+            <div class="terminal-line" style="animation-delay:0.4s">
+              <span class="name">test_invalid_token_rejected</span>
+              <span class="pass">PASS</span>
+            </div>
+            <div class="terminal-line" style="animation-delay:0.55s">
+              <span class="name">test_fhir_patient_resource</span>
+              <span class="pass">PASS</span>
+            </div>
+            <div class="terminal-summary">
+              4 tests, 4 <span class="ok">passed</span>, 0 failed, 0 skipped
+              <br />
+              elapsed time: 00:00:03.412<span class="blink" aria-hidden="true"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="illustrative-tag wrap">
+        contenido ilustrativo — no representa métricas reales de un proyecto en producción
+      </p>
+    </section>
+
+    <!-- ============ SOBRE MÍ ============ -->
+    <section class="section" id="sobre-mi">
+      <div class="wrap">
+        <div class="about-grid">
+          <div class="label-col reveal">sobre<br />mí</div>
+          <div class="reveal">
+            <p>
+              Soy Ingeniero en Sistemas de Información con experiencia en testing manual y
+              automatizado, pruebas de integración, análisis de resultados e investigación de
+              incidencias.
+            </p>
+            <p>
+              Trabajo principalmente con Python y Robot Framework. Busco que cada proyecto muestre
+              no solo scripts, sino también el razonamiento detrás de las pruebas, los riesgos
+              considerados y la evidencia obtenida.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TECNOLOGÍAS ============ -->
+    <section class="section" id="tecnologias">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">stack</p>
+            <h2>Tecnologías</h2>
+          </div>
+        </div>
+        <div class="tech-grid reveal">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">Robot Framework</span>
+          <span class="tech-tag">Selenium</span>
+          <span class="tech-tag">Pytest</span>
+          <span class="tech-tag">Swagger</span>
+          <span class="tech-tag">REST APIs</span>
+          <span class="tech-tag">SQL</span>
+          <span class="tech-tag">Git</span>
+          <span class="tech-tag">GitHub Actions</span>
+          <span class="tech-tag">Docker</span>
+          <span class="tech-tag">Linux</span>
+          <span class="tech-tag">MkDocs</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROYECTOS ============ -->
+    <section class="section" id="proyectos">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">portfolio</p>
+            <h2>Proyectos</h2>
+          </div>
+          <p class="section-desc">Selección de proyectos. El portfolio crece de forma gradual.</p>
+        </div>
+        <div class="project-list" data-project-list>
+          <!-- Se genera dinámicamente desde data/projects.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FORMACIÓN ============ -->
+    <section class="section" id="formacion">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">formación</p>
+            <h2>Formación</h2>
+          </div>
+        </div>
+        <div class="edu-list">
+          <div class="edu-block edu-block-single reveal">
+            <div>
+              <p class="edu-source">UTN FRLP</p>
+              <h3>Ingeniero en Sistemas de Información</h3>
+              <p class="project-desc">
+                Formación de grado en Ingeniería en Sistemas de Información, Universidad
+                Tecnológica Nacional, Facultad Regional La Plata.
+              </p>
+            </div>
+          </div>
+
+          <div class="edu-block reveal">
+            <div>
+              <p class="edu-source">Udemy</p>
+              <h3>Robot Framework Test Automation</h3>
+              <p class="project-desc">
+                Formación orientada a profundizar el diseño, organización y mantenimiento de
+                pruebas automatizadas con Robot Framework.
+              </p>
+            </div>
+            <a
+              href="assets/certificates/robot-framework-level-2.pdf"
+              class="btn btn-ghost"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Ver certificado</a
+            >
+          </div>
+
+          <div class="edu-block edu-block-single reveal">
+            <div>
+              <p class="edu-source">Curso</p>
+              <h3>Python</h3>
+              <p class="project-desc">
+                Fundamentos del lenguaje Python aplicados a scripting y automatización. Sin
+                certificado disponible.
+              </p>
+            </div>
+          </div>
+
+          <div class="edu-block edu-block-single reveal">
+            <div>
+              <p class="edu-source">Curso</p>
+              <h3>Linux</h3>
+              <p class="project-desc">
+                Administración básica de sistemas Linux: línea de comandos, permisos y gestión
+                de procesos. Sin certificado disponible.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACTO ============ -->
+    <section class="section contact" id="contacto">
+      <div class="wrap reveal">
+        <p class="eyebrow">contacto</p>
+        <h2>¿Hablamos sobre testing?</h2>
+        <div class="contact-links">
+          <a
+            href="https://www.linkedin.com/in/yoel-almiron/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >LinkedIn ↗</a
+          >
+          <a href="https://github.com/yoelalmiron1997" target="_blank" rel="noopener noreferrer"
+            >GitHub ↗</a
+          >
+          <a href="mailto:yoelalmiron1997@gmail.com">yoelalmiron1997@gmail.com</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© <span data-year>2026</span> Yoel Almirón</span>
+      <span>build: static · sin frameworks</span>
+    </div>
+  </footer>
+
+  <script src="data/projects.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

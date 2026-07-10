@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Comparador de configuraciones JSON — Yoel Almirón</title>
+  <meta
+    name="description"
+    content="Herramienta en Python para comparar archivos de configuración JSON y generar un reporte HTML visual con sus diferencias."
+  />
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="../../styles.css" />
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <header class="site-nav">
+    <nav class="wrap" aria-label="Navegación">
+      <a href="../../index.html" class="nav-back">← volver al portfolio</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="project-hero">
+      <div class="wrap">
+        <span class="status status-pass">Finalizado</span>
+        <h1>Comparador de configuraciones JSON</h1>
+        <p class="lead">
+          Herramienta en Python para comparar archivos de configuración JSON y generar un reporte
+          HTML visual con sus diferencias.
+        </p>
+        <div class="project-meta">
+          <span>Python</span>
+          <span>·</span>
+          <span>JSON</span>
+          <span>·</span>
+          <span>HTML</span>
+          <span>·</span>
+          <span>CSS</span>
+        </div>
+        <div class="btn-row" style="margin-top: 1.5rem">
+          <a
+            href="https://github.com/yoelalmiron1997/json-config-comparator"
+            class="btn btn-ghost"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Repositorio</a
+          >
+          <a
+            href="https://yoelalmiron1997.github.io/json-config-comparator/"
+            class="btn btn-ghost"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Deploy</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <dl class="detail-grid">
+          <dt>Contexto</dt>
+          <dd>
+            En proyectos con múltiples entornos (desarrollo, staging, producción) es común que las
+            configuraciones diverjan sin que nadie lo note hasta que provoca un incidente. Esta
+            herramienta nació para hacer esas diferencias visibles y fáciles de revisar.
+          </dd>
+
+          <dt>Objetivo</dt>
+          <dd>
+            Construir una utilidad de línea de comandos en Python que reciba dos archivos JSON,
+            calcule sus diferencias (claves agregadas, eliminadas y modificadas) y genere un
+            reporte HTML legible para compartir con el equipo.
+          </dd>
+
+          <dt>Riesgos considerados</dt>
+          <dd>
+            Estructuras JSON anidadas de forma profunda, diferencias de tipo de dato entre valores
+            aparentemente iguales, y reportes poco legibles cuando el volumen de diferencias es
+            alto.
+          </dd>
+
+          <dt>Estrategia de pruebas</dt>
+          <dd>
+            Casos de prueba con archivos JSON de ejemplo que cubren adiciones, eliminaciones,
+            cambios de valor y cambios de tipo, verificando que el reporte generado refleje
+            correctamente cada categoría de diferencia.
+          </dd>
+
+          <dt>Tecnologías</dt>
+          <dd>
+            <div class="tech-grid">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">JSON</span>
+              <span class="tech-tag">HTML</span>
+              <span class="tech-tag">CSS</span>
+            </div>
+          </dd>
+
+          <dt>Evidencia</dt>
+          <dd>
+            <div class="evidence-block">Evidencia pendiente de publicación</div>
+          </dd>
+
+          <dt>Resultados</dt>
+          <dd class="placeholder">Próximamente se agregarán nuevos casos.</dd>
+
+          <dt>Aprendizajes</dt>
+          <dd>
+            Un reporte de diferencias es tan útil como legible: la parte más difícil no fue
+            calcular el diff, sino presentarlo de forma que alguien lo entienda sin explicación
+            adicional.
+          </dd>
+        </dl>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© <span data-year>2026</span> Yoel Almirón</span>
+      <a href="../../index.html" class="nav-back">← volver al portfolio</a>
+    </div>
+  </footer>
+
+  <script src="../../script.js"></script>
+</body>
+</html>
