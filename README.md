@@ -44,9 +44,15 @@ Luego abrir `http://localhost:8000` en el navegador.
 
 ## Deploy en GitHub Pages
 
-`deployUrl` url (`"https://yoelalmiron1997.github.io/portfolio/"`)
+El sitio ya está publicado en:
 
-## Agregar un proyecto nuevo
+`https://yoelalmiron1997.github.io/portfolio/`
+
+Repositorio: `https://github.com/yoelalmiron1997/portfolio`
+
+## Para agregar un proyecto nuevo 
+
+PASOS:
 
 1. Copiar la carpeta `projects/template` a `projects/<nuevo-slug>`.
 2. Editar `projects/<nuevo-slug>/index.html`: título, estado, descripción, contexto,
