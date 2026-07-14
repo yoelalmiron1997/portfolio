@@ -161,4 +161,146 @@
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
   }
+
+  /* ---------- Hero terminal: live suite-run animation ---------- */
+  var terminalBody = document.querySelector("[data-terminal]");
+
+  if (terminalBody) {
+    var terminalEl = terminalBody.closest(".terminal");
+    var cmdEl = terminalBody.querySelector("[data-typewriter]");
+    var cursorEl = terminalBody.querySelector("[data-cmd-cursor]");
+    var testLines = Array.prototype.slice.call(
+      terminalBody.querySelectorAll("[data-test-line]")
+    );
+    var summaryEl = terminalBody.querySelector("[data-term-summary]");
+    var passedEl = terminalBody.querySelector("[data-term-passed]");
+    var elapsedEl = terminalBody.querySelector("[data-term-elapsed]");
+
+    var TARGET_ELAPSED_MS = 3412;
+
+    function formatElapsed(ms) {
+      var totalSeconds = ms / 1000;
+      var minutes = Math.floor(totalSeconds / 60);
+      var seconds = Math.floor(totalSeconds % 60);
+      var millis = Math.floor(ms % 1000);
+      function pad(n, len) {
+        return String(n).padStart(len, "0");
+      }
+      return "00:" + pad(minutes, 2) + ":" + pad(seconds, 2) + "." + pad(millis, 3);
+    }
+
+    function showFinalState() {
+      if (cmdEl) cmdEl.textContent = cmdEl.getAttribute("data-typewriter");
+      testLines.forEach(function (line) {
+        var statusEl = line.querySelector("[data-test-status]");
+        if (statusEl) {
+          statusEl.textContent = line.getAttribute("data-final-label") || "PASS";
+          statusEl.classList.add("is-pass");
+        }
+      });
+      if (passedEl) passedEl.textContent = String(testLines.length);
+      if (elapsedEl) elapsedEl.textContent = formatElapsed(TARGET_ELAPSED_MS);
+    }
+
+    var prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (prefersReducedMotion || !cmdEl) {
+      showFinalState();
+    } else {
+      var fullCmd = cmdEl.getAttribute("data-typewriter") || "";
+
+      function resetTerminal() {
+        cmdEl.textContent = "";
+        if (cursorEl) cursorEl.style.display = "";
+        testLines.forEach(function (line) {
+          var statusEl = line.querySelector("[data-test-status]");
+          if (statusEl) {
+            statusEl.classList.remove("is-running", "is-pass");
+            statusEl.textContent = "—";
+          }
+        });
+        if (passedEl) passedEl.textContent = "0";
+        if (elapsedEl) elapsedEl.textContent = "00:00:00.000";
+        if (summaryEl) summaryEl.classList.remove("is-done");
+      }
+
+      function typeChar(i) {
+        if (i <= fullCmd.length) {
+          cmdEl.textContent = fullCmd.slice(0, i);
+          setTimeout(function () {
+            typeChar(i + 1);
+          }, 22);
+        } else {
+          setTimeout(runTests, 300);
+        }
+      }
+
+      function runTests() {
+        if (cursorEl) cursorEl.style.display = "none";
+        if (terminalEl) terminalEl.classList.add("is-running");
+        var passedCount = 0;
+        var index = 0;
+
+        function runNext() {
+          if (index >= testLines.length) {
+            if (terminalEl) terminalEl.classList.remove("is-running");
+            setTimeout(animateElapsed, 200);
+            return;
+          }
+          var line = testLines[index];
+          var statusEl = line.querySelector("[data-test-status]");
+          if (statusEl) {
+            statusEl.textContent = "RUNNING";
+            statusEl.classList.add("is-running");
+          }
+          setTimeout(function () {
+            if (statusEl) {
+              statusEl.classList.remove("is-running");
+              statusEl.textContent = line.getAttribute("data-final-label") || "PASS";
+              statusEl.classList.add("is-pass");
+            }
+            passedCount++;
+            if (passedEl) passedEl.textContent = String(passedCount);
+            index++;
+            setTimeout(runNext, 160);
+          }, 420);
+        }
+
+        runNext();
+      }
+
+      function animateElapsed() {
+        var start = null;
+        var duration = 700;
+        var targetMs = 3100 + Math.round(Math.random() * 500);
+
+        function step(timestamp) {
+          if (!start) start = timestamp;
+          var progress = Math.min((timestamp - start) / duration, 1);
+          if (elapsedEl) {
+            elapsedEl.textContent = formatElapsed(progress * targetMs);
+          }
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          } else {
+            if (summaryEl) summaryEl.classList.add("is-done");
+            setTimeout(loopAgain, 2400);
+          }
+        }
+
+        requestAnimationFrame(step);
+      }
+
+      function loopAgain() {
+        resetTerminal();
+        setTimeout(function () {
+          typeChar(0);
+        }, 400);
+      }
+
+      typeChar(0);
+    }
+  }
 })();

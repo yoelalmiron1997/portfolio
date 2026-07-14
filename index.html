@@ -86,29 +86,44 @@
             <span class="tdot" aria-hidden="true"></span>
             <span>suite_execution.log</span>
           </div>
-          <div class="terminal-body">
-            <div><span class="prompt">$</span> <span class="cmd">robot --outputdir results suites/regression</span></div>
+          <div class="terminal-body" data-terminal>
+            <div class="term-cmd-line">
+              <span class="prompt">$</span>
+              <span class="cmd" data-typewriter="robot --outputdir results suites/regression"></span
+              ><span class="blink" data-cmd-cursor aria-hidden="true"></span>
+            </div>
             <br />
-            <div class="terminal-line" style="animation-delay:0.1s">
+            <div class="terminal-line" data-test-line data-final-label="PASS">
               <span class="name">test_login_valid_credentials</span>
-              <span class="pass">PASS</span>
+              <span class="test-status" data-test-status>—</span>
             </div>
-            <div class="terminal-line" style="animation-delay:0.25s">
+            <div class="terminal-line" data-test-line data-final-label="PASS">
               <span class="name">test_api_response_schema</span>
-              <span class="pass">PASS</span>
+              <span class="test-status" data-test-status>—</span>
             </div>
-            <div class="terminal-line" style="animation-delay:0.4s">
+            <div class="terminal-line" data-test-line data-final-label="PASS">
               <span class="name">test_invalid_token_rejected</span>
-              <span class="pass">PASS</span>
+              <span class="test-status" data-test-status>—</span>
             </div>
-            <div class="terminal-line" style="animation-delay:0.55s">
+            <div class="terminal-line" data-test-line data-final-label="PASS">
               <span class="name">test_fhir_patient_resource</span>
-              <span class="pass">PASS</span>
+              <span class="test-status" data-test-status>—</span>
             </div>
-            <div class="terminal-summary">
-              4 tests, 4 <span class="ok">passed</span>, 0 failed, 0 skipped
+            <div class="terminal-summary" data-term-summary>
+              4 tests, <span data-term-passed>0</span> <span class="ok">passed</span>, 0 failed, 0 skipped
               <br />
-              elapsed time: 00:00:03.412<span class="blink" aria-hidden="true"></span>
+              elapsed time: <span data-term-elapsed>00:00:00.000</span><span class="blink" aria-hidden="true"></span>
+            </div>
+          </div>
+          <div class="pipeline" aria-hidden="true">
+            <span class="pipeline-label">↻ pipeline</span>
+            <div class="pipeline-track">
+              <span class="pipeline-node" style="animation-delay:-1.8s">trigger</span>
+              <span class="pipeline-node" style="animation-delay:-1s">lint</span>
+              <span class="pipeline-node" style="animation-delay:0s">test</span>
+              <span class="pipeline-node" style="animation-delay:1s">report</span>
+              <span class="pipeline-node" style="animation-delay:1.8s">deploy</span>
+              <span class="pipeline-runner"></span>
             </div>
           </div>
         </div>
@@ -147,6 +162,7 @@
         </div>
         <div class="tech-grid reveal">
           <span class="tech-tag">Python</span>
+          <span class="tech-tag">Bash</span>
           <span class="tech-tag">Robot Framework</span>
           <span class="tech-tag">Selenium</span>
           <span class="tech-tag">Pytest</span>
@@ -156,11 +172,24 @@
           <span class="tech-tag">Git</span>
           <span class="tech-tag">GitHub Actions</span>
           <span class="tech-tag">Gitlab</span>
+<<<<<<< Updated upstream
           <span class="tech-tag">InfluxDB</span>
           <span class="tech-tag">Elasticsearch</span>
+=======
+          <span class="tech-tag">Jenkins</span>
+          <span class="tech-tag">InfluxDB</span>
+          <span class="tech-tag">Elasticsearch</span>
+          <span class="tech-tag">Kibana</span>
+          <span class="tech-tag">Grafana</span>
+          <span class="tech-tag">Zabbix</span>
+          <span class="tech-tag">Metricbeat</span>
+>>>>>>> Stashed changes
           <span class="tech-tag">Docker</span>
+          <span class="tech-tag">Portainer</span>
           <span class="tech-tag">Linux</span>
+          <span class="tech-tag">schroot</span>
           <span class="tech-tag">MkDocs</span>
+          <span class="tech-tag">Sphinx</span>
         </div>
       </div>
     </section>
