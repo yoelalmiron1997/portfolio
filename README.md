@@ -5,7 +5,7 @@ puro (sin frameworks). Pensada para GitHub Pages, con estadistica y información
 
 ## Estructura del proyecto
 
-```
+```bash
 portfolio-qa/
 ├── index.html                  Landing principal
 ├── styles.css                  Sistema de diseño (tokens + componentes)
@@ -45,46 +45,15 @@ Luego abrir `http://localhost:8000` en el navegador.
 ## Deploy en GitHub Pages
 
 El sitio ya está publicado en:
-<<<<<<< Updated upstream
-=======
 
-`https://yoelalmiron1997.github.io/portfolio/`
+Link: `https://yoelalmiron1997.github.io/portfolio/`
 
-Repositorio: `https://github.com/yoelalmiron1997/portfolio`
 
-Configuración usada en **Settings → Pages**: Source `Deploy from a branch`, Branch `main`,
-carpeta `/ (root)`.
-
-Todas las rutas del proyecto son relativas (`styles.css`, `data/projects.js`,
-`projects/<slug>/index.html`, etc.), por lo que funcionan igual en el subpath
-`/portfolio/` sin necesidad de ajustar nada.
-
-Cada vez que se suba un cambio a la rama `main` (`git push origin main`), GitHub Pages
-actualiza el sitio automáticamente en 1-2 minutos.
->>>>>>> Stashed changes
-
-`https://yoelalmiron1997.github.io/portfolio/`
-
-Repositorio: `https://github.com/yoelalmiron1997/portfolio`
-
-<<<<<<< Updated upstream
 ## Para agregar un proyecto nuevo 
-=======
-Ya reemplazados: GitHub (`github.com/yoelalmiron1997`), LinkedIn
-(`linkedin.com/in/yoel-almiron`) y correo (`yoelalmiron1997@gmail.com`) en `index.html`.
-
-Pendiente de ajustar por vos a medida que subas cada repositorio real:
-
-| Dónde | Qué reemplazar |
-|---|---|
-| `data/projects.js` | `repositoryUrl` y `deployUrl` de cada proyecto (hoy usan nombres de ejemplo) |
-| `projects/<slug>/index.html` | Los mismos enlaces de repositorio y deploy dentro del hero de cada página interna |
-| `index.html` y `projects/robot-framework-level-2/index.html` | ruta al certificado real en `assets/certificates/` |
->>>>>>> Stashed changes
 
 PASOS:
 
-1. Copiar la carpeta `projects/template` a `projects/<nuevo-slug>`.
+1. Copiar la carpeta `projects/template` a `projects/<nuevo>`.
 2. Editar `projects/<nuevo-slug>/index.html`: título, estado, descripción, contexto,
    objetivo, riesgos, estrategia de pruebas, tecnologías, evidencia, resultados y
    aprendizajes. Las secciones que todavía no tengan contenido real deben dejarse con los
