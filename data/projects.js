@@ -42,14 +42,14 @@ const PROJECTS = [
     featured: false,
   },
   {
-    title: "Robot Framework Test Automation – Level 2",
-    slug: "robot-framework-level-2",
+    title: "Robot Framework Test Automation",
+    slug: "robot-framework",
     description:
       "Resumen del curso realizado, habilidades reforzadas, certificado y aplicación práctica mediante una demostración sencilla.",
     technologies: ["Robot Framework", "Python", "SeleniumLibrary"],
     status: "info",
     statusLabel: "Curso finalizado",
-    pageUrl: "projects/robot-framework-level-2/index.html",
+    pageUrl: "projects/robot-framework/index.html",
     repositoryUrl: "https://github.com/yoelalmiron1997/robot-framework-level-2-demo",
     deployUrl: "",
     featured: false,

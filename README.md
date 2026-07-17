@@ -20,7 +20,7 @@ portfolio-qa/
 │   └── favicon.svg
 └── projects/
     ├── healthcare-fhir/
-    ├── robot-framework-level-2/
+    ├── robot-framework/
     ├── qa-api-portfolio/
     ├── json-config-comparator/
     └── template/                Punto de partida para un proyecto nuevo
