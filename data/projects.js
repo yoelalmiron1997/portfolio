@@ -20,12 +20,12 @@ const PROJECTS = [
     slug: "healthcare-fhir",
     description:
       "Proyecto orientado a la validación de integraciones de sistemas de salud mediante recursos FHIR, pruebas de API y documentación de evidencia.",
-    technologies: ["Python", "Robot Framework", "REST API", "FHIR", "GitHub Pages"],
+    technologies: ["Python", "Robot Framework", "REST API", "FHIR","Swagger", "GitHub Pages"],
     status: "done",
     statusLabel: "Finalizado",
     pageUrl: "projects/healthcare-fhir/index.html",
-    repositoryUrl: "https://github.com/yoelalmiron1997/healthcare-fhir-testing",
-    deployUrl: "https://yoelalmiron1997.github.io/healthcare-fhir-testing/",
+    repositoryUrl: "https://github.com/yoelalmiron1997/healthcare-fhir-integration",
+    deployUrl: "https://healthcare-fhir-api.onrender.com/docs",
     featured: true,
   },
   {
