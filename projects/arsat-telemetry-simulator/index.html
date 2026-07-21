@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Simulador de Telemetría Satelital ARSAT — Yoel Almirón</title>
+
+  <meta
+    name="description"
+    content="Proyecto educativo de simulación de telemetría satelital con Python, MQTT, Prometheus, Grafana, Docker y Robot Framework."
+  />
+
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="../../styles.css" />
+</head>
+
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <header class="site-nav">
+    <nav class="wrap" aria-label="Navegación">
+      <a href="../../index.html" class="nav-back">← volver al portfolio</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="project-hero">
+      <div class="wrap">
+
+        <span class="status">v1.0.0</span>
+
+        <h1>Simulador de Telemetría Satelital ARSAT</h1>
+
+        <p class="lead">
+          Simulación educativa de una arquitectura de telemetría satelital,
+          comunicaciones y observabilidad en tiempo real mediante Python,
+          MQTT, Prometheus y Grafana.
+        </p>
+
+        <div class="project-meta">
+          <span>Python</span>
+          <span>·</span>
+          <span>MQTT</span>
+          <span>·</span>
+          <span>Docker</span>
+          <span>·</span>
+          <span>Prometheus</span>
+          <span>·</span>
+          <span>Grafana</span>
+          <span>·</span>
+          <span>Robot Framework</span>
+        </div>
+
+        <div class="btn-row" style="margin-top: 1.5rem">
+
+          <a
+            href="https://github.com/yoelalmiron1997/arsat-telemetry-simulator"
+            class="btn btn-ghost"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Ver repositorio
+          </a>
+
+          <a
+            href="https://github.com/yoelalmiron1997/arsat-telemetry-simulator/releases/tag/v1.0.0"
+            class="btn btn-ghost"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Release v1.0.0
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- DETALLE -->
+    <section class="section">
+      <div class="wrap">
+
+        <dl class="detail-grid">
+
+          <dt>Contexto</dt>
+
+          <dd>
+            Proyecto educativo orientado a representar, de forma simplificada,
+            la arquitectura de telemetría, comunicaciones y monitoreo utilizada
+            en sistemas satelitales.
+          </dd>
+
+
+          <dt>Objetivo</dt>
+
+          <dd>
+            Reproducir el ciclo completo de la telemetría: desde la generación
+            de datos por los subsistemas simulados del satélite hasta su
+            transmisión, recepción, procesamiento y visualización en una
+            estación terrena.
+          </dd>
+
+
+          <dt>Arquitectura</dt>
+
+          <dd>
+            El sistema utiliza una arquitectura basada en microservicios y
+            comunicación Publish/Subscribe. Los subsistemas simulados generan
+            telemetría en Python, MQTT actúa como enlace de comunicación y una
+            Ground Station procesa los datos antes de exponer las métricas hacia
+            Prometheus y Grafana.
+          </dd>
+
+
+          <dt>Flujo de telemetría</dt>
+
+          <dd>
+            Los subsistemas EPS, TCS, AOCS y Payload generan datos simulados
+            del satélite. La información se empaqueta como tramas de telemetría,
+            se transmite mediante MQTT y posteriormente es decodificada por la
+            estación terrena para su monitoreo en tiempo real.
+          </dd>
+
+
+          <dt>Simulación de anomalías</dt>
+
+          <dd>
+            El entorno permite generar fallas controladas, como caídas de
+            tensión o cambios anormales en parámetros del satélite, permitiendo
+            observar cómo las anomalías se reflejan automáticamente en los
+            dashboards del centro de control.
+          </dd>
+
+
+          <dt>Observabilidad</dt>
+
+          <dd>
+            Prometheus recopila las métricas generadas por el sistema mientras
+            Grafana permite visualizar el estado de los subsistemas,
+            identificar anomalías y seguir la posición orbital simulada
+            mediante un panel de monitoreo tipo Mission Control.
+          </dd>
+
+
+          <dt>Testing</dt>
+
+          <dd>
+            Se incorporaron pruebas automatizadas con Robot Framework para
+            validar componentes y comportamientos principales del sistema,
+            incluyendo el procesamiento de telemetría y escenarios asociados
+            a las anomalías simuladas.
+          </dd>
+
+
+          <dt>Tecnologías</dt>
+
+          <dd>
+            <div class="tech-grid">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Robot Framework</span>
+              <span class="tech-tag">MQTT</span>
+              <span class="tech-tag">Mosquitto</span>
+              <span class="tech-tag">Prometheus</span>
+              <span class="tech-tag">Grafana</span>
+              <span class="tech-tag">Docker</span>
+              <span class="tech-tag">GitHub Actions</span>
+            </div>
+          </dd>
+
+
+          <dt>Resultado</dt>
+
+          <dd>
+            Un entorno reproducible y dockerizado capaz de simular generación,
+            transmisión y procesamiento de telemetría satelital, incluyendo
+            monitoreo en tiempo real, rastreo orbital y detección visual de
+            anomalías.
+          </dd>
+
+
+          <dt>Aprendizajes</dt>
+
+          <dd>
+            Este proyecto permitió integrar conceptos de sistemas distribuidos,
+            arquitectura orientada a eventos, protocolos de comunicación,
+            observabilidad, automatización de pruebas y despliegue de servicios
+            mediante contenedores.
+          </dd>
+
+        </dl>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <footer class="site-footer">
+    <div class="wrap">
+
+      <span>
+        © <span data-year>2026</span> Yoel Almirón
+      </span>
+
+      <a href="../../index.html" class="nav-back">
+        ← volver al portfolio
+      </a>
+
+    </div>
+  </footer>
+
+
+  <script src="../../script.js"></script>
+
+</body>
+</html>
