@@ -83,6 +83,15 @@
             Release v1.0.0
           </a>
 
+          <a
+            href="https://snapshots.raintank.io/dashboard/snapshot/PQ49MNRfXkyY8iI9dfPuyUodAw8nV3GQ"
+            class="btn btn-ghost"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Ver demo en vivo
+          </a>
+
         </div>
       </div>
     </section>
@@ -157,10 +166,13 @@
           <dt>Testing</dt>
 
           <dd>
-            Se incorporaron pruebas automatizadas con Robot Framework para
-            validar componentes y comportamientos principales del sistema,
-            incluyendo el procesamiento de telemetría y escenarios asociados
-            a las anomalías simuladas.
+            Suite de testing automatizado en 4 niveles: <b>smoke</b> (Pytest, chequeo de
+            salud de los 7 servicios), <b>API</b> (Pytest, contrato del endpoint de métricas),
+            <b>integración</b> (Robot Framework, flujo end-to-end determinista MQTT →
+            Ground Station → Prometheus con tramas conocidas) y <b>regresión / fault
+            injection</b> (Pytest, verifica que las alertas de Prometheus se disparen y se
+            recuperen ante anomalías reales inyectadas). Corre automáticamente en cada push
+            vía GitHub Actions.
           </dd>
 
 
@@ -169,6 +181,7 @@
           <dd>
             <div class="tech-grid">
               <span class="tech-tag">Python</span>
+              <span class="tech-tag">Pytest</span>
               <span class="tech-tag">Robot Framework</span>
               <span class="tech-tag">MQTT</span>
               <span class="tech-tag">Mosquitto</span>
@@ -176,6 +189,20 @@
               <span class="tech-tag">Grafana</span>
               <span class="tech-tag">Docker</span>
               <span class="tech-tag">GitHub Actions</span>
+            </div>
+          </dd>
+
+
+          <dt>Evidencia</dt>
+
+          <dd>
+            <div class="evidence-block">
+              Pipeline de CI/CD público con los 4 suites de testing corriendo en cada push —
+              ver el
+              <a href="https://github.com/yoelalmiron1997/arsat-telemetry-simulator/actions/workflows/ci.yml" target="_blank" rel="noopener noreferrer">historial de ejecuciones</a>
+              en GitHub Actions. El dashboard de Grafana con una anomalía real capturada está
+              disponible en el
+              <a href="https://snapshots.raintank.io/dashboard/snapshot/PQ49MNRfXkyY8iI9dfPuyUodAw8nV3GQ" target="_blank" rel="noopener noreferrer">demo en vivo</a>.
             </div>
           </dd>
 
