@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Robot Framework Linux Integration Testing — Yoel Almirón</title>
+  <meta
+    name="description"
+    content="Suite de pruebas de integración con Robot Framework para validar el ciclo de vida completo de un servicio Linux empaquetado como .deb."
+  />
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="../../styles.css" />
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <header class="site-nav">
+    <nav class="wrap" aria-label="Navegación">
+      <a href="../../index.html" class="nav-back">← volver al portfolio</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="project-hero">
+      <div class="wrap">
+        <span class="status status-pass">Finalizado</span>
+        <h1>Robot Framework Linux Integration Testing</h1>
+        <p class="lead">
+          Suite automatizada de pruebas de integración para validar el ciclo de vida completo
+          de un servicio Linux distribuido como paquete Debian (<code>.deb</code>): instalación,
+          arranque, actualización, logs, recuperación ante fallas y remoción limpia.
+        </p>
+        <div class="project-meta">
+          <span>Robot Framework</span>
+          <span>·</span>
+          <span>Python</span>
+          <span>·</span>
+          <span>Linux / Debian</span>
+          <span>·</span>
+          <span>Docker</span>
+          <span>·</span>
+          <span>GitHub Actions</span>
+        </div>
+        <div class="btn-row" style="margin-top: 1.5rem">
+          <a
+            href="https://github.com/yoelalmiron1997/robot-linux-integration-suite"
+            class="btn btn-ghost"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Ver repositorio</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <dl class="detail-grid">
+          <dt>Contexto</dt>
+          <dd>
+            El software distribuido a sistemas Linux empresariales suele empaquetarse como
+            binarios Debian (<code>.deb</code>). Validar estos paquetes exige más que un test
+            de API o de interfaz web: requiere verificar estados de instalación, scripts de
+            pre/post instalación, ubicación de archivos, ciclo de vida del servicio,
+            persistencia de la configuración entre actualizaciones y una desinstalación limpia
+            sin archivos huérfanos.
+          </dd>
+
+          <dt>Objetivo</dt>
+          <dd>
+            Construir una suite de integración end-to-end con Robot Framework que valide el
+            ciclo de vida completo de un servicio Linux sintético (<code>satellite-telemetry</code>)
+            empaquetado como <code>.deb</code>: desde la instalación limpia hasta la remoción,
+            pasando por arranque, actualización in-place y recuperación ante fallas.
+          </dd>
+
+          <dt>Riesgos considerados</dt>
+          <dd>
+            Dependencias declaradas incorrectamente, archivos de configuración corruptos que
+            deberían impedir el arranque del servicio, pérdida de configuraciones
+            personalizadas del usuario tras una actualización, archivos huérfanos tras una
+            desinstalación, y falta de recuperación del servicio ante una terminación abrupta
+            del proceso.
+          </dd>
+
+          <dt>Estrategia de pruebas</dt>
+          <dd>
+            15 casos de prueba agrupados en 6 categorías: instalación, dependencias,
+            configuración, ciclo de vida del servicio, actualización y remoción. Cada caso usa
+            una librería custom de Robot Framework en Python (<code>LinuxPackageLibrary.py</code>)
+            que envuelve <code>dpkg</code>/<code>dpkg-query</code>, control POSIX de servicios
+            y peticiones HTTP reales contra el endpoint de salud del servicio.
+          </dd>
+
+          <dt>Casos de prueba destacados</dt>
+          <dd>
+            <div class="tech-grid" style="margin-bottom: 0.75rem">
+              <span class="tech-tag">TC-005 · Validación de esquema JSON de configuración</span>
+              <span class="tech-tag">TC-008 · GET /health end-to-end</span>
+              <span class="tech-tag">TC-010/011 · Upgrade 1.0.0 → 1.1.0 preservando config</span>
+              <span class="tech-tag">TC-014 · Config corrupta impide el arranque</span>
+              <span class="tech-tag">TC-015 · Recuperación tras SIGKILL</span>
+            </div>
+            El detalle completo de los 15 casos (TC-001 a TC-015) está documentado en el
+            <a href="https://github.com/yoelalmiron1997/robot-linux-integration-suite#casos-de-prueba" target="_blank" rel="noopener noreferrer">README del repositorio</a>.
+          </dd>
+
+          <dt>Tecnologías</dt>
+          <dd>
+            <div class="tech-grid">
+              <span class="tech-tag">Robot Framework</span>
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Linux / Debian (.deb)</span>
+              <span class="tech-tag">dpkg / apt</span>
+              <span class="tech-tag">Docker</span>
+              <span class="tech-tag">GitHub Actions</span>
+            </div>
+          </dd>
+
+          <dt>Evidencia</dt>
+          <dd>
+            <div class="evidence-block">
+              Cada corrida de CI empaqueta las versiones 1.0.0 y 1.1.0, ejecuta los 15 casos
+              con permisos de root dentro de un contenedor Ubuntu/Debian, y publica
+              <code>report.html</code>, <code>log.html</code> y <code>output.xml</code> como
+              artifacts descargables. Ver el
+              <a href="https://github.com/yoelalmiron1997/robot-linux-integration-suite/actions/workflows/robot-tests.yml" target="_blank" rel="noopener noreferrer">historial de ejecuciones</a>.
+            </div>
+          </dd>
+
+          <dt>Resultado</dt>
+          <dd>
+            Una suite reproducible con Docker que valida no solo el comportamiento funcional
+            del servicio, sino también la integridad del paquete y su ciclo de vida completo
+            como lo haría un equipo de QA validando un release antes de su distribución.
+          </dd>
+
+          <dt>Aprendizajes</dt>
+          <dd>
+            Probar a nivel de sistema operativo (instalación, servicios, señales POSIX) exige
+            diseñar keywords de Robot Framework que abstraigan comandos de shell sin perder
+            precisión sobre qué se está validando en cada paso — la trazabilidad entre keyword
+            y comando real es tan importante como el resultado final.
+          </dd>
+        </dl>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© <span data-year>2026</span> Yoel Almirón</span>
+      <a href="../../index.html" class="nav-back">← volver al portfolio</a>
+    </div>
+  </footer>
+
+  <script src="../../script.js"></script>
+</body>
+</html>

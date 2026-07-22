@@ -56,7 +56,7 @@
     var links =
       renderLink("Detalle", project.pageUrl) +
       renderLink("Repositorio", project.repositoryUrl) +
-      renderLink("Deploy", project.deployUrl);
+      renderLink(project.deployLabel || "Deploy", project.deployUrl);
 
     if (project.featured) {
       return (
