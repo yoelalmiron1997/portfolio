@@ -68,6 +68,20 @@ const PROJECTS = [
     deployUrl: "https://ai-qa-testing-agent.onrender.com",
     featured: false,
   },
+  {
+    title: "Selenium 4 QA & Scraping Portfolio",
+    slug: "selenium-portfolio-3d",
+    description:
+      "Suite de automatización E2E con Selenium 4 y Pytest (patrón Page Object Model) sobre un comparador de precios de impresión 3D, más un bot de web scraping. Deploy y reporte de pruebas publicados vía GitHub Actions.",
+    technologies: ["Python", "Selenium 4", "Pytest", "Page Object Model", "Web Scraping", "CI/CD"],
+    status: "done",
+    statusLabel: "Finalizado",
+    pageUrl: "projects/selenium-portfolio-3d/index.html",
+    repositoryUrl: "https://github.com/yoelalmiron1997/selenium-portfolio-3d",
+    deployUrl: "https://yoelalmiron1997.github.io/selenium-portfolio-3d/",
+    deployLabel: "Ver demo",
+    featured: false,
+  },
 ];
 
 // Exponer en window para script.js (sin módulos, compatible con GitHub Pages)

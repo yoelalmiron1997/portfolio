@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Selenium 4 QA & Scraping Portfolio — Yoel Almirón</title>
+  <meta
+    name="description"
+    content="Suite de automatización E2E con Selenium 4 y Pytest (Page Object Model) sobre un comparador de precios de impresión 3D, con bot de web scraping y CI/CD."
+  />
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="../../styles.css" />
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <header class="site-nav">
+    <nav class="wrap" aria-label="Navegación">
+      <a href="../../index.html" class="nav-back">← volver al portfolio</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="project-hero">
+      <div class="wrap">
+        <span class="status status-pass">Finalizado</span>
+        <h1>Selenium 4 QA & Scraping Portfolio</h1>
+        <p class="lead">
+          Suite de automatización E2E con Selenium 4 y Pytest sobre un comparador de precios
+          de impresión 3D (búsqueda, filtros por categoría, ordenamiento por precio), más un
+          bot de web scraping que alimenta los datos del sitio. Deploy y reporte de pruebas
+          publicados automáticamente vía GitHub Actions.
+        </p>
+        <div class="project-meta">
+          <span>Python</span>
+          <span>·</span>
+          <span>Selenium 4</span>
+          <span>·</span>
+          <span>Pytest</span>
+          <span>·</span>
+          <span>Page Object Model</span>
+          <span>·</span>
+          <span>Web Scraping</span>
+        </div>
+        <div class="btn-row" style="margin-top: 1.5rem">
+          <a
+            href="https://github.com/yoelalmiron1997/selenium-portfolio-3d"
+            class="btn btn-ghost"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Ver repositorio</a
+          >
+          <a
+            href="https://yoelalmiron1997.github.io/selenium-portfolio-3d/"
+            class="btn btn-ghost"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Ver demo en vivo</a
+          >
+          <a
+            href="https://yoelalmiron1997.github.io/selenium-portfolio-3d/reports/report.html"
+            class="btn btn-ghost"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Reporte de pruebas HTML</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <dl class="detail-grid">
+          <dt>Contexto</dt>
+          <dd>
+            Un sitio de comparación de precios necesita, además de mostrar datos, garantizar
+            que la búsqueda, el filtrado y el ordenamiento funcionen de forma confiable ante
+            cambios en el catálogo — justamente el tipo de flujo de usuario que rompe
+            silenciosamente cuando se modifica el frontend sin cobertura de pruebas E2E.
+          </dd>
+
+          <dt>Objetivo</dt>
+          <dd>
+            Construir una suite de automatización E2E con Selenium 4 y Pytest, organizada con
+            el patrón Page Object Model, que valide los flujos críticos de un comparador de
+            precios de impresión 3D, alimentado por un bot de web scraping propio, con
+            despliegue y reporte de evidencia automatizados en cada push.
+          </dd>
+
+          <dt>Riesgos considerados</dt>
+          <dd>
+            Búsquedas que no filtran correctamente los resultados, filtros por categoría que
+            devuelven productos de otra categoría, ordenamiento por precio inconsistente
+            (ascendente/descendente), y búsquedas sin resultados que no limpian la grilla
+            correctamente.
+          </dd>
+
+          <dt>Estrategia de pruebas</dt>
+          <dd>
+            Suite Pytest con arquitectura Page Object Model (<code>HomePage</code> +
+            <code>BasePage</code> con <code>WebDriverWait</code> explícito, sin
+            <code>sleep</code> fijos innecesarios en la capa de aserciones). Casos cubren carga
+            inicial de la home, búsqueda por texto, filtrado por categoría, ordenamiento
+            ascendente/descendente por precio, y búsqueda sin resultados. Corre en modo
+            headless en CI y también soporta modo visible para debugging local.
+          </dd>
+
+          <dt>Tecnologías</dt>
+          <dd>
+            <div class="tech-grid">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Selenium 4 WebDriver</span>
+              <span class="tech-tag">Pytest</span>
+              <span class="tech-tag">Page Object Model</span>
+              <span class="tech-tag">Web Scraping</span>
+              <span class="tech-tag">GitHub Actions</span>
+              <span class="tech-tag">GitHub Pages</span>
+            </div>
+          </dd>
+
+          <dt>Evidencia</dt>
+          <dd>
+            <div class="evidence-block">
+              El sitio y el reporte de pruebas se despliegan automáticamente en cada push.
+              Ver el
+              <a href="https://yoelalmiron1997.github.io/selenium-portfolio-3d/" target="_blank" rel="noopener noreferrer">demo en vivo</a>
+              y el
+              <a href="https://yoelalmiron1997.github.io/selenium-portfolio-3d/reports/report.html" target="_blank" rel="noopener noreferrer">reporte HTML de la última corrida</a>.
+            </div>
+          </dd>
+
+          <dt>Resultado</dt>
+          <dd>
+            Una suite E2E reproducible que corre en Chrome headless dentro de GitHub Actions,
+            con evidencia de ejecución (reporte HTML + capturas de pantalla por test) publicada
+            automáticamente, sin pasos manuales entre el push y el reporte visible.
+          </dd>
+
+          <dt>Aprendizajes</dt>
+          <dd>
+            Separar los <code>WebDriverWait</code> explícitos de los <code>time.sleep</code>
+            usados para esperar animaciones del frontend deja mucho más claro, al leer un test
+            que falla, si el problema es de sincronización o un cambio real de comportamiento.
+          </dd>
+        </dl>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© <span data-year>2026</span> Yoel Almirón</span>
+      <a href="../../index.html" class="nav-back">← volver al portfolio</a>
+    </div>
+  </footer>
+
+  <script src="../../script.js"></script>
+</body>
+</html>
