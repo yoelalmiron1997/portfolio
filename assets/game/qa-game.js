@@ -529,6 +529,18 @@
     this.bugsBlocked = 0;
     this.bugsImpacted = 0;
     this.shotTimestamps = [];
+
+    // El sistema está 100% recuperado: ningún elemento debería seguir
+    // mostrando daño visual pendiente, aunque le hayan faltado refuerzos
+    // puntuales para terminar de limpiarse solo.
+    this.targets.forEach(function (t) {
+      if (t.damageLevel > 0) {
+        t.el.classList.remove(DAMAGE_CLASSES[0], DAMAGE_CLASSES[1], DAMAGE_CLASSES[2]);
+        t.damageLevel = 0;
+        t.hits = 0;
+      }
+    });
+
     this.floatText(
       window.innerWidth / 2,
       150,
