@@ -120,6 +120,8 @@
     if (this.active) return;
     this.active = true;
 
+    window.scrollTo(0, 0);
+
     this.coverage = 99;
     this.testCases = 148;
     this.health = 100;
@@ -739,16 +741,6 @@
     var h = this.canvas.height;
 
     ctx.clearRect(0, 0, w, h);
-
-    // Shield rings sutiles sobre targets con cobertura alta
-    if (this.coverage >= 55) {
-      ctx.strokeStyle = "rgba(95, 201, 141, 0.18)";
-      ctx.lineWidth = 1;
-      this.targets.forEach(function (t) {
-        var r = t.rect;
-        ctx.strokeRect(r.left - 2, r.top - 2, r.width + 4, r.height + 4);
-      });
-    }
 
     // Bullets
     this.bullets.forEach(function (b) {

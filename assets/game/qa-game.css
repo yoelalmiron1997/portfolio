@@ -80,8 +80,7 @@
   transform: translateX(-50%);
   z-index: 960;
   width: min(720px, calc(100% - 2rem));
-  background: rgba(15, 26, 22, 0.88);
-  backdrop-filter: blur(6px);
+  background: var(--surface-raised);
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-md);
   padding: var(--sp-2) var(--sp-3);
@@ -89,6 +88,7 @@
   color: var(--text-primary);
   display: grid;
   gap: 0.6rem;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
 }
 
 .qa-hud-system-row {
