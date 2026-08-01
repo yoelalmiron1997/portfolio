@@ -44,13 +44,100 @@
     "expect(locator).to_be_visible()",
   ];
 
-  var CICD_PHRASES = [
-    "✓ Pipeline de CI/CD mejorado",
-    "✓ Deploy automático estabilizado",
-    "✓ Rollback disponible",
-    "✓ Cobertura recuperada",
-    "✓ Health check restaurado",
-  ];
+  var CICD_PHRASES = {
+    es: [
+      "✓ Pipeline de CI/CD mejorado",
+      "✓ Deploy automático estabilizado",
+      "✓ Rollback disponible",
+      "✓ Cobertura recuperada",
+      "✓ Health check restaurado",
+    ],
+    en: [
+      "✓ CI/CD pipeline improved",
+      "✓ Automated deploy stabilized",
+      "✓ Rollback available",
+      "✓ Coverage recovered",
+      "✓ Health check restored",
+    ],
+  };
+
+  function currentLang() {
+    return window.getLang ? window.getLang() : "es";
+  }
+
+  var GAME_I18N = {
+    es: {
+      launcherLabel: "Testeá la Resistencia del Portfolio",
+      launcherAria: "Abrir minijuego QA Defense",
+      hudSystemLabel: "🛡 Sistema en defensa:",
+      hudStatusEstable: "ESTABLE",
+      hudStatusDegradado: "DEGRADADO",
+      hudStatusCaido: "⚠ CAÍDO — reforzá el QA para recuperarlo",
+      hudCoverage: "Cobertura",
+      hudHealth: "Salud del Sistema",
+      hudTestCases: "Casos de prueba:",
+      hudFeatures: "Features lanzados:",
+      hudBlocked: "Bloqueados:",
+      hudImpacted: "Impactados:",
+      hudTimer: "⏱ Sostené el sistema en pie:",
+      hudBurst: "Próxima Issue Épica en:",
+      hudBurstShots: "disparos",
+      hudControls:
+        "<kbd>A</kbd><kbd>D</kbd> rotar · <kbd>W</kbd><kbd>S</kbd> empuje · <kbd>Espacio</kbd> disparar feature · <kbd>R</kbd> disparar CI/CD (cura) · click en el sitio o \u2795 para reforzar QA",
+      hudAddTc: "➕ Agregar Test Cases",
+      hudExit: "Salir (Esc)",
+      burstWarning: "⚠ Nueva Issue Épica sin tests — deuda técnica",
+      recoveredMsg: "✓ Sistema recuperado — contadores reiniciados",
+      winTitle: "🏆 Sistema en producción, estable",
+      winBody:
+        "Sostuviste la cobertura y la salud del sistema durante {seconds} segundos bajo presión constante de features. Así se ve un buen pipeline de QA.",
+      winRetry: "Jugar de nuevo",
+      loseTitle: "💥 Sistema caído — Game Over",
+      loseBody:
+        "La deuda técnica ganó esta vez: la salud del sistema quedó en 0% sin repararse a tiempo. Reforzá el QA antes de que la próxima épica te vuelva a agarrar desprevenido.",
+      loseRetry: "Reintentar",
+      quit: "Salir",
+      mobileControlsHint: "Tocá y arrastrá para mover · botones para disparar",
+    },
+    en: {
+      launcherLabel: "Test the Portfolio's Resilience",
+      launcherAria: "Open QA Defense minigame",
+      hudSystemLabel: "🛡 System under defense:",
+      hudStatusEstable: "STABLE",
+      hudStatusDegradado: "DEGRADED",
+      hudStatusCaido: "⚠ DOWN — reinforce QA to recover it",
+      hudCoverage: "Coverage",
+      hudHealth: "System Health",
+      hudTestCases: "Test cases:",
+      hudFeatures: "Features shipped:",
+      hudBlocked: "Blocked:",
+      hudImpacted: "Impacted:",
+      hudTimer: "⏱ Keep the system up:",
+      hudBurst: "Next Epic Issue in:",
+      hudBurstShots: "shots",
+      hudControls:
+        "<kbd>A</kbd><kbd>D</kbd> rotate · <kbd>W</kbd><kbd>S</kbd> thrust · <kbd>Space</kbd> shoot feature · <kbd>R</kbd> shoot CI/CD (heal) · click the site or \u2795 to reinforce QA",
+      hudAddTc: "➕ Add Test Cases",
+      hudExit: "Exit (Esc)",
+      burstWarning: "⚠ New Epic Issue with no tests — tech debt",
+      recoveredMsg: "✓ System recovered — counters reset",
+      winTitle: "🏆 System in production, stable",
+      winBody:
+        "You kept coverage and system health up for {seconds} seconds under constant feature pressure. That's what a solid QA pipeline looks like.",
+      winRetry: "Play again",
+      loseTitle: "💥 System down — Game Over",
+      loseBody:
+        "Tech debt won this time: system health hit 0% without being repaired in time. Reinforce QA before the next epic catches you off guard.",
+      loseRetry: "Retry",
+      quit: "Exit",
+      mobileControlsHint: "Tap and drag to move · buttons to shoot",
+    },
+  };
+
+  function gt(key) {
+    var lang = currentLang();
+    return (GAME_I18N[lang] && GAME_I18N[lang][key]) || GAME_I18N.es[key];
+  }
 
   var DAMAGE_CLASSES = ["qa-damaged-1", "qa-damaged-2", "qa-damaged-3"];
 
@@ -104,14 +191,21 @@
     var launcher = document.createElement("button");
     launcher.type = "button";
     launcher.className = "qa-game-launcher";
-    launcher.setAttribute("aria-label", "Abrir minijuego QA Defense");
+    launcher.setAttribute("aria-label", gt("launcherAria"));
     launcher.innerHTML =
-      '<span class="pulse" aria-hidden="true"></span><span class="label">🎮 Testeá la Resistencia del Portfolio</span>';
+      '<span class="pulse" aria-hidden="true"></span>' +
+      '<span class="icon" aria-hidden="true">🎮</span>' +
+      '<span class="label">' + gt("launcherLabel") + "</span>";
     launcher.addEventListener("click", function () {
       self.start();
     });
     document.body.appendChild(launcher);
     this.launcher = launcher;
+
+    document.addEventListener("portfolio:langchange", function () {
+      launcher.setAttribute("aria-label", gt("launcherAria"));
+      launcher.querySelector(".label").textContent = gt("launcherLabel");
+    });
   };
 
   /* ---------------- Ciclo de vida ---------------- */
@@ -121,6 +215,7 @@
     this.active = true;
 
     window.scrollTo(0, 0);
+    if (this.launcher) this.launcher.style.display = "none";
 
     this.coverage = 99;
     this.testCases = 148;
@@ -143,6 +238,7 @@
     this.buildOverlay();
     this.buildHud();
     this.buildTargets();
+    this.buildMobileControls();
 
     this.ship = {
       x: window.innerWidth / 2,
@@ -190,14 +286,19 @@
     if (this.hud && this.hud.parentNode) {
       this.hud.parentNode.removeChild(this.hud);
     }
+    if (this.mobileControls && this.mobileControls.parentNode) {
+      this.mobileControls.parentNode.removeChild(this.mobileControls);
+    }
     document.querySelectorAll(".qa-float").forEach(function (n) {
       n.remove();
     });
 
     this.overlay = null;
     this.hud = null;
+    this.mobileControls = null;
     this.canvas = null;
     this.ctx = null;
+    if (this.launcher) this.launcher.style.display = "";
   };
 
   /* ---------------- Construcción de DOM del juego ---------------- */
@@ -227,37 +328,37 @@
     hud.className = "qa-hud";
     hud.innerHTML =
       '<div class="qa-hud-row qa-hud-system-row">' +
-      '<span class="qa-hud-system-label">🛡 Sistema en defensa:</span>' +
+      '<span class="qa-hud-system-label">' + gt("hudSystemLabel") + "</span>" +
       '<span class="qa-hud-system-name">yoelalmiron@portfolio</span>' +
-      '<span class="qa-hud-system-status" data-qa-system-status>ESTABLE</span>' +
+      '<span class="qa-hud-system-status" data-qa-system-status>' + gt("hudStatusEstable") + "</span>" +
       "</div>" +
       '<div class="qa-hud-row">' +
-      '<span class="qa-hud-label">Cobertura</span>' +
+      '<span class="qa-hud-label">' + gt("hudCoverage") + "</span>" +
       '<div class="qa-bar-track"><div class="qa-bar-fill" data-qa-coverage-fill></div></div>' +
       '<span class="qa-hud-value" data-qa-coverage-value>99%</span>' +
       "</div>" +
       '<div class="qa-hud-row">' +
-      '<span class="qa-hud-label">Salud del Sistema</span>' +
+      '<span class="qa-hud-label">' + gt("hudHealth") + "</span>" +
       '<div class="qa-bar-track"><div class="qa-bar-fill" data-qa-health-fill></div></div>' +
       '<span class="qa-hud-value" data-qa-health-value>100%</span>' +
       "</div>" +
       '<div class="qa-hud-row" style="font-size:0.7rem;color:var(--text-secondary)">' +
-      '<span>Casos de prueba: <b data-qa-tc>148</b></span>' +
-      '<span>Features lanzados: <b data-qa-features>0</b></span>' +
-      '<span>Bloqueados: <b data-qa-blocked>0</b></span>' +
-      '<span>Impactados: <b data-qa-impacted>0</b></span>' +
+      "<span>" + gt("hudTestCases") + ' <b data-qa-tc>148</b></span>' +
+      "<span>" + gt("hudFeatures") + ' <b data-qa-features>0</b></span>' +
+      "<span>" + gt("hudBlocked") + ' <b data-qa-blocked>0</b></span>' +
+      "<span>" + gt("hudImpacted") + ' <b data-qa-impacted>0</b></span>' +
       "</div>" +
       '<div class="qa-hud-row" style="font-size:0.7rem;color:var(--text-secondary)">' +
-      '<span>⏱ Sostené el sistema en pie: <b data-qa-timer>0:00</b> / 1:00</span>' +
+      "<span>" + gt("hudTimer") + ' <b data-qa-timer>0:00</b> / 1:00</span>' +
       "</div>" +
       '<div class="qa-hud-row" style="font-size:0.7rem;color:var(--text-secondary)">' +
-      '<span>Próxima Issue Épica en: <b data-qa-burst>4</b> disparos</span>' +
+      "<span>" + gt("hudBurst") + ' <b data-qa-burst>4</b> ' + gt("hudBurstShots") + "</span>" +
       "</div>" +
       '<div class="qa-hud-controls">' +
-      "<span><kbd>A</kbd><kbd>D</kbd> rotar · <kbd>W</kbd><kbd>S</kbd> empuje · <kbd>Espacio</kbd> disparar feature · <kbd>R</kbd> disparar CI/CD (cura) · click en el sitio o \u2795 para reforzar QA</span>" +
+      "<span>" + (this.isTouchDevice() ? gt("mobileControlsHint") : gt("hudControls")) + "</span>" +
       '<div class="qa-hud-actions">' +
-      '<button type="button" class="qa-hud-btn" data-qa-add-tc>➕ Agregar Test Cases</button>' +
-      '<button type="button" class="qa-hud-btn exit" data-qa-exit>Salir (Esc)</button>' +
+      '<button type="button" class="qa-hud-btn" data-qa-add-tc>' + gt("hudAddTc") + "</button>" +
+      '<button type="button" class="qa-hud-btn exit" data-qa-exit>' + gt("hudExit") + "</button>" +
       "</div>" +
       "</div>";
 
@@ -288,6 +389,88 @@
       .map(function (el) {
         return { el: el, rect: el.getBoundingClientRect(), hits: 0, damageLevel: 0 };
       });
+  };
+
+  QAGame.prototype.isTouchDevice = function () {
+    return "ontouchstart" in window || navigator.maxTouchPoints > 0;
+  };
+
+  QAGame.prototype.buildMobileControls = function () {
+    var self = this;
+    var wrap = document.createElement("div");
+    wrap.className = "qa-mobile-controls";
+    if (this.isTouchDevice()) wrap.classList.add("active");
+
+    wrap.innerHTML =
+      '<div class="qa-dpad">' +
+      '<button type="button" class="qa-dpad-btn qa-dpad-rotate-left" data-hold="a" aria-label="Rotar a la izquierda">◀</button>' +
+      '<button type="button" class="qa-dpad-btn qa-dpad-thrust" data-hold="w" aria-label="Empuje">▲</button>' +
+      '<button type="button" class="qa-dpad-btn qa-dpad-rotate-right" data-hold="d" aria-label="Rotar a la derecha">▶</button>' +
+      '<button type="button" class="qa-dpad-btn qa-dpad-brake" data-hold="s" aria-label="Empuje reverso">▼</button>' +
+      "</div>" +
+      '<div class="qa-mobile-actions">' +
+      '<button type="button" class="qa-action-btn shoot" data-fire="feature" aria-label="Disparar feature">🔫</button>' +
+      '<button type="button" class="qa-action-btn cicd" data-fire="cicd" aria-label="Disparar CI/CD">🔧</button>' +
+      "</div>";
+
+    document.body.appendChild(wrap);
+    this.mobileControls = wrap;
+
+    // D-pad: mantener presionado activa el mismo flag en this.keys que
+    // usa el teclado (a/d/w/s) — cero lógica duplicada.
+    var holdButtons = wrap.querySelectorAll("[data-hold]");
+    for (var i = 0; i < holdButtons.length; i++) {
+      (function (btn) {
+        var key = btn.getAttribute("data-hold");
+        var press = function (e) {
+          e.preventDefault();
+          self.keys[key] = true;
+          btn.classList.add("is-pressed");
+        };
+        var release = function (e) {
+          if (e) e.preventDefault();
+          self.keys[key] = false;
+          btn.classList.remove("is-pressed");
+        };
+        btn.addEventListener("pointerdown", press);
+        btn.addEventListener("pointerup", release);
+        btn.addEventListener("pointercancel", release);
+        btn.addEventListener("pointerleave", release);
+      })(holdButtons[i]);
+    }
+
+    // Botones de disparo: mantener presionado dispara en ráfaga, igual
+    // que mantener Espacio/R en el teclado (shoot()/shootCicd() ya
+    // limitan la cadencia internamente).
+    var fireButtons = wrap.querySelectorAll("[data-fire]");
+    for (var j = 0; j < fireButtons.length; j++) {
+      (function (btn) {
+        var kind = btn.getAttribute("data-fire");
+        var intervalId = null;
+        var fire = function () {
+          if (kind === "cicd") self.shootCicd();
+          else self.shoot();
+        };
+        var press = function (e) {
+          e.preventDefault();
+          btn.classList.add("is-pressed");
+          fire();
+          intervalId = setInterval(fire, 60);
+        };
+        var release = function (e) {
+          if (e) e.preventDefault();
+          btn.classList.remove("is-pressed");
+          if (intervalId) {
+            clearInterval(intervalId);
+            intervalId = null;
+          }
+        };
+        btn.addEventListener("pointerdown", press);
+        btn.addEventListener("pointerup", release);
+        btn.addEventListener("pointercancel", release);
+        btn.addEventListener("pointerleave", release);
+      })(fireButtons[j]);
+    }
   };
 
   QAGame.prototype.recalcRects = function () {
@@ -546,7 +729,7 @@
     this.floatText(
       window.innerWidth / 2,
       150,
-      "✓ Sistema recuperado — contadores reiniciados",
+      gt("recoveredMsg"),
       "cicd"
     );
   };
@@ -560,21 +743,19 @@
     modal.className = "qa-end-modal";
     modal.innerHTML = won
       ? '<div class="qa-end-card win">' +
-        "<h2>🏆 Sistema en producción, estable</h2>" +
-        "<p>Sostuviste la cobertura y la salud del sistema durante " +
-        WIN_TIME_SECONDS +
-        " segundos bajo presión constante de features. Así se ve un buen pipeline de QA.</p>" +
+        "<h2>" + gt("winTitle") + "</h2>" +
+        "<p>" + gt("winBody").replace("{seconds}", WIN_TIME_SECONDS) + "</p>" +
         '<div class="qa-end-actions">' +
-        '<button type="button" class="qa-hud-btn" data-qa-retry>Jugar de nuevo</button>' +
-        '<button type="button" class="qa-hud-btn exit" data-qa-quit>Salir</button>' +
+        '<button type="button" class="qa-hud-btn" data-qa-retry>' + gt("winRetry") + "</button>" +
+        '<button type="button" class="qa-hud-btn exit" data-qa-quit>' + gt("quit") + "</button>" +
         "</div>" +
         "</div>"
       : '<div class="qa-end-card lose">' +
-        "<h2>💥 Sistema caído — Game Over</h2>" +
-        "<p>La deuda técnica ganó esta vez: la salud del sistema quedó en 0% sin repararse a tiempo. Reforzá el QA antes de que la próxima épica te vuelva a agarrar desprevenido.</p>" +
+        "<h2>" + gt("loseTitle") + "</h2>" +
+        "<p>" + gt("loseBody") + "</p>" +
         '<div class="qa-end-actions">' +
-        '<button type="button" class="qa-hud-btn" data-qa-retry>Reintentar</button>' +
-        '<button type="button" class="qa-hud-btn exit" data-qa-quit>Salir</button>' +
+        '<button type="button" class="qa-hud-btn" data-qa-retry>' + gt("loseRetry") + "</button>" +
+        '<button type="button" class="qa-hud-btn exit" data-qa-quit>' + gt("quit") + "</button>" +
         "</div>" +
         "</div>";
 
@@ -620,7 +801,7 @@
       decay += (burstCount - BURST_THRESHOLD) * 1.8;
       if (now - this.lastBurstWarnAt > 900) {
         this.lastBurstWarnAt = now;
-        this.floatText(ship.x, ship.y - 30, "⚠ Nueva Issue Épica sin tests — deuda técnica", "warn");
+        this.floatText(ship.x, ship.y - 30, gt("burstWarning"), "warn");
       }
     }
     this.coverage = clamp(this.coverage - decay, 0, 99);
@@ -669,7 +850,7 @@
     this.coverage = clamp(this.coverage + 5, 0, 99);
     this.health = clamp(this.health + 8, 0, 100);
     this.testCases += 2;
-    this.floatText(x, y, pick(CICD_PHRASES), "cicd");
+    this.floatText(x, y, pick(CICD_PHRASES[currentLang()]), "cicd");
     this.spawnBurst(x, y, "rgba(127, 166, 201, 0.9)");
 
     if (target.damageLevel > 0) {
@@ -825,13 +1006,13 @@
     var statusEl = this.hud.querySelector("[data-qa-system-status]");
     statusEl.classList.remove("estable", "degradado", "caido");
     if (hp <= 0) {
-      statusEl.textContent = "⚠ CAÍDO — reforzá el QA para recuperarlo";
+      statusEl.textContent = gt("hudStatusCaido");
       statusEl.classList.add("caido");
     } else if (hp < 50 || cov < 50) {
-      statusEl.textContent = "DEGRADADO";
+      statusEl.textContent = gt("hudStatusDegradado");
       statusEl.classList.add("degradado");
     } else {
-      statusEl.textContent = "ESTABLE";
+      statusEl.textContent = gt("hudStatusEstable");
       statusEl.classList.add("estable");
     }
   };

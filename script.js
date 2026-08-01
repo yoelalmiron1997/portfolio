@@ -24,13 +24,57 @@
     });
   }
 
+  /* ---------- Reveal on scroll (setup compartido) ---------- */
+  var revealSupported = "IntersectionObserver" in window;
+  var revealObserver = null;
+
+  if (revealSupported) {
+    revealObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+  }
+
+  function observeReveal(el) {
+    if (revealObserver) {
+      revealObserver.observe(el);
+    } else {
+      el.classList.add("is-visible");
+    }
+  }
+
   /* ---------- Render project cards from data/projects.js ---------- */
   var listEl = document.querySelector("[data-project-list]");
+
+  function t(key, fallback) {
+    var lang = window.getLang ? window.getLang() : "es";
+    var d = (window.I18N && window.I18N[lang]) || {};
+    return d[key] !== undefined ? d[key] : fallback;
+  }
 
   function statusClass(status) {
     if (status === "done") return "status-pass";
     if (status === "progress") return "status-progress";
     return "status-info";
+  }
+
+  function translatedStatusLabel(project) {
+    var lang = window.getLang ? window.getLang() : "es";
+    if (lang === "en" && project.statusLabelEn) return project.statusLabelEn;
+    return project.statusLabel;
+  }
+
+  function translatedDescription(project) {
+    var lang = window.getLang ? window.getLang() : "es";
+    if (lang === "en" && project.descriptionEn) return project.descriptionEn;
+    return project.description;
   }
 
   function renderLink(label, url) {
@@ -43,7 +87,8 @@
         "</a>"
       );
     }
-    return '<span class="disabled">' + label + " (pendiente)</span>";
+    var pendingLabel = t("project.link.pending", "(pendiente)");
+    return '<span class="disabled">' + label + " " + pendingLabel + "</span>";
   }
 
   function renderProject(project, index) {
@@ -53,10 +98,16 @@
       })
       .join("");
 
+    var lang = window.getLang ? window.getLang() : "es";
+    var deployLabel = (lang === "en" && project.deployLabelEn) || project.deployLabel || t("project.link.deploy", "Deploy");
+
     var links =
-      renderLink("Detalle", project.pageUrl) +
-      renderLink("Repositorio", project.repositoryUrl) +
-      renderLink(project.deployLabel || "Deploy", project.deployUrl);
+      renderLink(t("project.link.detail", "Detalle"), project.pageUrl) +
+      renderLink(t("project.link.repo", "Repositorio"), project.repositoryUrl) +
+      renderLink(deployLabel, project.deployUrl);
+
+    var description = translatedDescription(project);
+    var statusLabel = translatedStatusLabel(project);
 
     if (project.featured) {
       return (
@@ -73,11 +124,11 @@
         '<span class="status ' +
         statusClass(project.status) +
         '">' +
-        project.statusLabel +
+        statusLabel +
         "</span>" +
         "</div>" +
         '<p class="project-desc">' +
-        project.description +
+        description +
         "</p>" +
         '<div class="project-tech">' +
         techTags +
@@ -99,7 +150,7 @@
       project.title +
       "</h3>" +
       '<p class="project-desc">' +
-      project.description +
+      description +
       "</p>" +
       '<div class="project-tech">' +
       techTags +
@@ -112,14 +163,17 @@
       '<span class="status ' +
       statusClass(project.status) +
       '">' +
-      project.statusLabel +
+      statusLabel +
       "</span>" +
       "</div>" +
       "</article>"
     );
   }
 
-  if (listEl && window.PROJECTS) {
+  var hasRenderedProjectsOnce = false;
+
+  window.renderProjectList = function () {
+    if (!listEl || !window.PROJECTS) return;
     var featured = window.PROJECTS.filter(function (p) {
       return p.featured;
     });
@@ -129,31 +183,48 @@
     var ordered = featured.concat(rest);
 
     listEl.innerHTML = ordered.map(renderProject).join("");
-  }
 
-  /* ---------- Reveal on scroll ---------- */
-  var revealEls = document.querySelectorAll(".reveal");
+    // Las tarjetas nuevas arrancan con opacity:0 (clase .reveal) para el
+    // efecto de aparición al hacer scroll. Eso solo tiene sentido en el
+    // primer render: si se re-renderiza (cambio de idioma), el observer
+    // ya pasó por su ciclo de vida normal y estas tarjetas son elementos
+    // del DOM completamente nuevos que nunca vio — quedarían invisibles
+    // para siempre si dependemos de él otra vez. Por eso, a partir del
+    // segundo render, las mostramos ya, sin animación.
+    if (hasRenderedProjectsOnce) {
+      listEl.querySelectorAll(".reveal").forEach(function (el) {
+        el.classList.add("is-visible");
+      });
+    } else {
+      listEl.querySelectorAll(".reveal").forEach(observeReveal);
+    }
+    hasRenderedProjectsOnce = true;
+  };
 
-  if ("IntersectionObserver" in window && revealEls.length) {
-    var observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12 }
-    );
+  window.renderProjectList();
+  document.addEventListener("portfolio:langchange", window.renderProjectList);
 
-    revealEls.forEach(function (el) {
-      observer.observe(el);
+  /* ---------- Reveal on scroll: resto de la página ---------- */
+  // Las project-cards ya se observaron arriba; acá va todo lo demás
+  // (hero, sobre mí, tecnologías, formación, contacto).
+  var revealEls = Array.prototype.slice
+    .call(document.querySelectorAll(".reveal"))
+    .filter(function (el) {
+      return !listEl || !listEl.contains(el);
     });
-  } else {
-    revealEls.forEach(function (el) {
-      el.classList.add("is-visible");
-    });
+
+  revealEls.forEach(observeReveal);
+
+  if (revealSupported) {
+    // Red de seguridad: si por lo que sea el navegador no llega a
+    // disparar la intersección de algún elemento (scroll muy rápido,
+    // timing raro, etc.), nunca debería quedar contenido invisible
+    // para siempre. A los 900ms forzamos visible todo lo que falte.
+    setTimeout(function () {
+      document.querySelectorAll(".reveal:not(.is-visible)").forEach(function (el) {
+        el.classList.add("is-visible");
+      });
+    }, 900);
   }
 
   /* ---------- Footer year ---------- */

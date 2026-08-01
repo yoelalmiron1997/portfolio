@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI QA Testing Agent Platform — Yoel Almirón</title>
+  <title data-i18n="aiqa.meta.title">AI QA Testing Agent Platform — Yoel Almirón</title>
   <meta
+    id="meta-description"
     name="description"
+    data-i18n-attr="content:aiqa.meta.description"
     content="Agente de IA autónomo para testing de APIs REST: análisis de riesgo, generación de casos de prueba y diagnóstico de defectos."
   />
   <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
@@ -18,22 +20,35 @@
   />
 
   <link rel="stylesheet" href="../../styles.css" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("portfolio_theme");
+        if (t === "light") document.documentElement.setAttribute("data-theme", "light");
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
   <div class="bg-grid" aria-hidden="true"></div>
 
   <header class="site-nav">
     <nav class="wrap" aria-label="Navegación">
-      <a href="../../index.html" class="nav-back">← volver al portfolio</a>
+      <a href="../../index.html" class="nav-back" data-i18n="nav.back">← volver al portfolio</a>
+      <div class="nav-controls">
+        <button class="lang-toggle" type="button" data-lang="es">ES</button>
+        <button class="lang-toggle" type="button" data-lang="en">EN</button>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Cambiar tema">☀️</button>
+      </div>
     </nav>
   </header>
 
   <main>
     <section class="project-hero">
       <div class="wrap">
-        <span class="status status-pass">Finalizado</span>
+        <span class="status status-pass" data-i18n="project.status.done">Finalizado</span>
         <h1>AI QA Testing Agent Platform</h1>
-        <p class="lead">
+        <p class="lead" data-i18n="aiqa.hero.lead">
           Plataforma que analiza especificaciones REST API documentadas con OpenAPI/Swagger,
           evalúa el riesgo de cada endpoint, genera casos de prueba en 9 dimensiones, los
           ejecuta con aserciones HTTP reales y diagnostica defectos con razonamiento de causa raíz.
@@ -55,6 +70,7 @@
             class="btn btn-ghost"
             target="_blank"
             rel="noopener noreferrer"
+            data-i18n="detail.viewRepo"
             >Ver repositorio</a
           >
           <a
@@ -62,6 +78,7 @@
             class="btn btn-ghost"
             target="_blank"
             rel="noopener noreferrer"
+            data-i18n="detail.viewLiveDemo"
             >Ver demo en vivo</a
           >
           <a
@@ -78,8 +95,8 @@
     <section class="section">
       <div class="wrap">
         <dl class="detail-grid">
-          <dt>Contexto</dt>
-          <dd>
+          <dt data-i18n="detail.context">Contexto</dt>
+          <dd data-i18n="aiqa.detail.context">
             Analizar manualmente el riesgo de cada endpoint de una API y diseñar casos de
             prueba que cubran los distintos escenarios (funcionales, de borde, de seguridad,
             de payload inválido) es un trabajo repetitivo que escala mal a medida que crece
@@ -87,24 +104,24 @@
             riesgo y diseño de casos puede automatizarse a partir de la especificación misma.
           </dd>
 
-          <dt>Objetivo</dt>
-          <dd>
+          <dt data-i18n="detail.objective">Objetivo</dt>
+          <dd data-i18n="aiqa.detail.objective">
             Construir una plataforma que reciba una especificación OpenAPI/Swagger (2.0, 3.0
             o 3.1), evalúe automáticamente el riesgo de cada endpoint, genere casos de prueba
             priorizados, los ejecute contra la API real y produzca un reporte de evidencia
             con diagnóstico de causa raíz ante cada falla.
           </dd>
 
-          <dt>Riesgos considerados</dt>
-          <dd>
+          <dt data-i18n="detail.risks">Riesgos considerados</dt>
+          <dd data-i18n="aiqa.detail.risks">
             Endpoints de mutación de datos (POST/PUT/DELETE) sin cobertura de negativos,
             ausencia de validación de autenticación/autorización, payloads malformados o con
             tipos de dato incorrectos, y falta de trazabilidad entre una falla HTTP y su causa
             técnica real.
           </dd>
 
-          <dt>Estrategia de pruebas</dt>
-          <dd>
+          <dt data-i18n="detail.strategy">Estrategia de pruebas</dt>
+          <dd data-i18n-html="aiqa.detail.strategy">
             El agente clasifica cada endpoint como riesgo <b>HIGH</b>, <b>MEDIUM</b> o
             <b>LOW</b> según su sensibilidad y método HTTP, y genera casos en 9 dimensiones:
             funcional (camino feliz), límites, negativos (404), seguridad (sin token),
@@ -114,15 +131,15 @@
             respuesta.
           </dd>
 
-          <dt>Diagnóstico de defectos</dt>
-          <dd>
+          <dt data-i18n="aiqa.detail.diagnosisTitle">Diagnóstico de defectos</dt>
+          <dd data-i18n="aiqa.detail.diagnosis">
             Ante cualquier falla o código de respuesta inesperado, el agente realiza un
             análisis de causa raíz automatizado, asignando un nivel de confianza
             (HIGH/MEDIUM/LOW), explicando el mecanismo de la falla y sugiriendo una
             recomendación concreta para el equipo de desarrollo.
           </dd>
 
-          <dt>Tecnologías</dt>
+          <dt data-i18n="detail.technologies">Tecnologías</dt>
           <dd>
             <div class="tech-grid">
               <span class="tech-tag">Python</span>
@@ -135,8 +152,8 @@
             </div>
           </dd>
 
-          <dt>Evidencia</dt>
-          <dd>
+          <dt data-i18n="detail.evidence">Evidencia</dt>
+          <dd data-i18n-html="aiqa.detail.evidence">
             La plataforma está desplegada y accesible públicamente; cualquier especificación
             OpenAPI puede cargarse en vivo para generar un reporte real de riesgo, casos de
             prueba y ejecución. Ver
@@ -145,15 +162,15 @@
             <a href="https://ai-qa-testing-agent.onrender.com/api/v1/docs" target="_blank" rel="noopener noreferrer">documentación Swagger</a>.
           </dd>
 
-          <dt>Resultado</dt>
-          <dd>
+          <dt data-i18n="detail.result">Resultado</dt>
+          <dd data-i18n="aiqa.detail.result">
             Una plataforma end-to-end que reduce el análisis manual de riesgo y diseño de
             casos de prueba de una especificación OpenAPI a un proceso automatizado y
             repetible, con reportes HTML y Markdown listos para compartir como evidencia.
           </dd>
 
-          <dt>Aprendizajes</dt>
-          <dd>
+          <dt data-i18n="detail.learnings">Aprendizajes</dt>
+          <dd data-i18n="aiqa.detail.learnings">
             Diseñar prompts y heurísticas de clasificación de riesgo confiables exige pensar
             primero como QA (qué haría manualmente y por qué) antes de automatizarlo — el
             agente es, en esencia, una checklist de análisis de riesgo convertida en código.
@@ -166,10 +183,13 @@
   <footer class="site-footer">
     <div class="wrap">
       <span>© <span data-year>2026</span> Yoel Almirón</span>
-      <a href="../../index.html" class="nav-back">← volver al portfolio</a>
+      <a href="../../index.html" class="nav-back" data-i18n="nav.back">← volver al portfolio</a>
     </div>
   </footer>
 
+  <script src="../../assets/theme.js"></script>
+  <script src="../../assets/i18n/dictionary.js"></script>
+  <script src="../../assets/i18n/i18n.js"></script>
   <script src="../../script.js"></script>
 </body>
 </html>

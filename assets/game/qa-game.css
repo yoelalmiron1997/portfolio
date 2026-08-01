@@ -367,6 +367,102 @@
   justify-content: center;
 }
 
+/* ---------- Controles táctiles (mobile) ---------- */
+.qa-mobile-controls {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 965;
+  padding: 1rem;
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  justify-content: space-between;
+  align-items: flex-end;
+  pointer-events: none;
+}
+
+.qa-mobile-controls.active {
+  display: flex;
+}
+
+.qa-dpad {
+  display: grid;
+  grid-template-columns: repeat(3, 52px);
+  grid-template-rows: repeat(2, 52px);
+  gap: 0.4rem;
+  pointer-events: auto;
+}
+
+.qa-dpad-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(24, 38, 32, 0.85);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: 1.3rem;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+}
+
+.qa-dpad-btn:active,
+.qa-dpad-btn.is-pressed {
+  background: var(--accent-pass-dim);
+  border-color: var(--accent-pass);
+  color: var(--accent-pass);
+}
+
+.qa-dpad-rotate-left { grid-column: 1; grid-row: 2; }
+.qa-dpad-thrust { grid-column: 2; grid-row: 1; }
+.qa-dpad-rotate-right { grid-column: 3; grid-row: 2; }
+.qa-dpad-brake { grid-column: 2; grid-row: 2; }
+
+.qa-mobile-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  pointer-events: auto;
+}
+
+.qa-action-btn {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  border: 1px solid var(--border-strong);
+  background: rgba(24, 38, 32, 0.85);
+  color: var(--text-primary);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+}
+
+.qa-action-btn.shoot:active,
+.qa-action-btn.shoot.is-pressed {
+  background: var(--accent-warn-dim);
+  border-color: var(--accent-warn);
+  color: var(--accent-warn);
+}
+
+.qa-action-btn.cicd:active,
+.qa-action-btn.cicd.is-pressed {
+  background: var(--accent-info-dim);
+  border-color: var(--accent-info);
+  color: var(--accent-info);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .qa-mobile-controls {
+    display: none !important;
+  }
+}
+
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   .qa-hit-shake,
@@ -383,10 +479,47 @@
   .qa-game-launcher span.label {
     display: none;
   }
+  .qa-game-launcher {
+    padding: 0.85rem;
+    gap: 0.4rem;
+  }
+  .qa-game-launcher .icon {
+    font-size: 1.3rem;
+    line-height: 1;
+  }
   .qa-hud {
     top: 0.5rem;
+    width: calc(100% - 1rem);
+    padding: 0.6rem 0.75rem;
+    gap: 0.4rem;
   }
   .qa-hud-label {
     min-width: 90px;
+  }
+  .qa-hud-row {
+    font-size: 0.68rem;
+  }
+  .qa-hud-row[style*="font-size"] {
+    font-size: 0.62rem !important;
+    row-gap: 0.2rem;
+  }
+  .qa-hud-controls {
+    font-size: 0.6rem;
+  }
+  .qa-hud-controls kbd {
+    display: none;
+  }
+  .qa-hud-actions {
+    flex-wrap: wrap;
+  }
+  .qa-hud-btn {
+    font-size: 0.62rem;
+    padding: 0.3rem 0.5rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .qa-hud-row[style*="font-size"] span {
+    display: block;
   }
 }

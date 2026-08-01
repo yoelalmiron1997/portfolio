@@ -17,10 +17,13 @@
 
   --accent-pass: #5fc98d;
   --accent-pass-dim: rgba(95, 201, 141, 0.12);
+  --accent-pass-hover: #70d69a;
   --accent-warn: #dcae67;
   --accent-warn-dim: rgba(220, 174, 103, 0.12);
   --accent-info: #7fa6c9;
   --accent-info-dim: rgba(127, 166, 201, 0.12);
+
+  --nav-bg: rgba(13, 21, 18, 0.86);
 
   /* Type */
   --font-display: "Space Grotesk", "Segoe UI", sans-serif;
@@ -43,6 +46,33 @@
   --content-max: 1120px;
 
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* ---------- Tema claro ---------- */
+:root[data-theme="light"] {
+  --bg: #f4f6f4;
+  --bg-alt: #eceef0;
+  --surface: #ffffff;
+  --surface-raised: #ffffff;
+  --border: #d7ddd8;
+  --border-strong: #b9c1ba;
+  --text-primary: #14201a;
+  --text-secondary: #3f4c45;
+  --text-muted: #647069;
+
+  --accent-pass: #1f8a53;
+  --accent-pass-dim: rgba(31, 138, 83, 0.12);
+  --accent-pass-hover: #17703f;
+  --accent-warn: #9a670f;
+  --accent-warn-dim: rgba(154, 103, 15, 0.12);
+  --accent-info: #2c6690;
+  --accent-info-dim: rgba(44, 102, 144, 0.12);
+
+  --nav-bg: rgba(255, 255, 255, 0.86);
+}
+
+:root[data-theme="light"] .btn-primary {
+  color: #f4f6f4;
 }
 
 /* ---------- Reset ---------- */
@@ -188,7 +218,7 @@ p {
   position: sticky;
   top: 0;
   z-index: 20;
-  background: rgba(13, 21, 18, 0.86);
+  background: var(--nav-bg);
   backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--border);
 }
@@ -254,6 +284,48 @@ p {
   color: var(--accent-pass);
 }
 
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.lang-toggle,
+.theme-toggle {
+  background: transparent;
+  border: 1px solid var(--border-strong);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 0.35rem 0.55rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: color 0.15s var(--ease), border-color 0.15s var(--ease);
+}
+
+.lang-toggle:hover,
+.theme-toggle:hover {
+  color: var(--accent-pass);
+  border-color: var(--accent-pass);
+}
+
+.lang-toggle.is-active {
+  color: var(--accent-pass);
+  border-color: var(--accent-pass);
+}
+
+.theme-toggle {
+  font-size: 0.85rem;
+  line-height: 1;
+  padding: 0.3rem 0.5rem;
+}
+
 .nav-toggle {
   display: none;
   background: transparent;
@@ -296,8 +368,8 @@ p {
 }
 
 .btn-primary:hover {
-  background: #70d69a;
-  border-color: #70d69a;
+  background: var(--accent-pass-hover);
+  border-color: var(--accent-pass-hover);
 }
 
 .btn-ghost {
@@ -994,6 +1066,24 @@ p {
     display: inline-block;
   }
 
+  .brand {
+    font-size: 0.78rem;
+  }
+
+  .nav-right {
+    gap: 0.5rem;
+  }
+
+  .nav-controls {
+    gap: 0.25rem;
+  }
+
+  .lang-toggle,
+  .theme-toggle {
+    padding: 0.3rem 0.4rem;
+    font-size: 0.65rem;
+  }
+
   .project-card {
     grid-template-columns: 1fr;
   }
@@ -1035,5 +1125,14 @@ p {
 
   .pipeline-label {
     display: none;
+  }
+
+  .terminal-body {
+    font-size: 0.7rem;
+    padding: var(--sp-2);
+  }
+
+  .terminal-line {
+    gap: 0.4rem;
   }
 }

@@ -2,10 +2,12 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yoel Almirón — Tester de Software</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title data-i18n="meta.title">Yoel Almirón — Tester de Software</title>
   <meta
+    id="meta-description"
     name="description"
+    data-i18n-attr="content:meta.description"
     content="Portfolio de Yoel Almirón, tester de software e Ingeniero en Sistemas de Información. Testing manual y automatizado, automatización con Robot Framework y Python, validación de APIs."
   />
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
@@ -19,6 +21,14 @@
 
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="assets/game/qa-game.css" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("portfolio_theme");
+        if (t === "light") document.documentElement.setAttribute("data-theme", "light");
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
   <div class="bg-grid" aria-hidden="true"></div>
@@ -29,22 +39,29 @@
         <span class="dot" aria-hidden="true"></span>
         yoelalmiron@portfolio
       </a>
-      <button
-        class="nav-toggle"
-        type="button"
-        data-nav-toggle
-        aria-expanded="false"
-        aria-controls="primary-nav"
-      >
-        menu
-      </button>
-      <ul class="nav-links" id="primary-nav" data-nav-links>
-        <li><a href="#sobre-mi">sobre-mi</a></li>
-        <li><a href="#tecnologias">tecnologias</a></li>
-        <li><a href="#proyectos">proyectos</a></li>
-        <li><a href="#formacion">formacion</a></li>
-        <li><a href="#contacto">contacto</a></li>
-      </ul>
+      <div class="nav-right">
+        <div class="nav-controls">
+          <button class="lang-toggle" type="button" data-lang="es">ES</button>
+          <button class="lang-toggle" type="button" data-lang="en">EN</button>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Cambiar tema">☀️</button>
+        </div>
+        <button
+          class="nav-toggle"
+          type="button"
+          data-nav-toggle
+          aria-expanded="false"
+          aria-controls="primary-nav"
+        >
+          menu
+        </button>
+        <ul class="nav-links" id="primary-nav" data-nav-links>
+          <li><a href="#sobre-mi" data-i18n="nav.about">sobre-mi</a></li>
+          <li><a href="#tecnologias" data-i18n="nav.tech">tecnologias</a></li>
+          <li><a href="#proyectos" data-i18n="nav.projects">proyectos</a></li>
+          <li><a href="#formacion" data-i18n="nav.education">formacion</a></li>
+          <li><a href="#contacto" data-i18n="nav.contact">contacto</a></li>
+        </ul>
+      </div>
     </nav>
   </header>
 
@@ -54,14 +71,14 @@
       <div class="wrap">
         <div>
           <p class="hero-kicker">
-            <strong>Yoel Almirón</strong> — Ingeniero en Sistemas de Información · Software QA Engineer
+            <strong>Yoel Almirón</strong> — <span data-i18n="hero.kicker">Ingeniero en Sistemas de Información · Software QA Engineer</span>
           </p>
-        <h1>Testing, automatización y calidad de software</h1>
-        <p class="lead">
+        <h1 data-i18n="hero.title">Testing, automatización y calidad de software</h1>
+        <p class="lead" data-i18n="hero.lead">
           En este portfolio comparto proyectos que reflejan mi forma de trabajar como QA. Cada uno combina análisis, diseño de pruebas, automatización y documentación para validar el comportamiento de sistemas y generar evidencia clara sobre su calidad.
         </p>
           <div class="btn-row">
-            <a href="#proyectos" class="btn btn-primary">Explorar proyectos</a>
+            <a href="#proyectos" class="btn btn-primary" data-i18n="hero.btnExplore">Explorar proyectos</a>
             <a
               href="https://github.com/yoelalmiron1997"
               class="btn btn-ghost"
@@ -134,15 +151,15 @@
     <section class="section" id="sobre-mi">
       <div class="wrap">
         <div class="about-grid">
-          <div class="label-col reveal">Sobre<br />mí</div>
+          <div class="label-col reveal" data-i18n-html="about.label">Sobre<br />mí</div>
           <div class="reveal">
-            <p>
+            <p data-i18n="about.p1">
               Soy Ingeniero en Sistemas de Información con experiencia en QA Manual y Automation. 
               A lo largo de mi carrera he participado en pruebas funcionales, de integración y automatizadas, 
               investigando incidencias y colaborando con equipos de desarrollo para mejorar la calidad del software. 
 
             </p>
-            <p>
+            <p data-i18n="about.p2">
               Disfruto analizar cómo interactúan los sistemas, construir herramientas que faciliten el proceso de 
               testing y seguir aprendiendo nuevas tecnologías para crear soluciones cada vez más robustas.
             </p>
@@ -156,8 +173,8 @@
       <div class="wrap">
         <div class="section-head reveal">
           <div>
-            <p class="eyebrow">stack</p>
-            <h2>Tecnologías</h2>
+            <p class="eyebrow" data-i18n="tech.eyebrow">stack</p>
+            <h2 data-i18n="tech.title">Tecnologías</h2>
           </div>
         </div>
         <div class="tech-grid reveal">
@@ -175,8 +192,6 @@
           <span class="tech-tag">InfluxDB</span>
           <span class="tech-tag">Elasticsearch</span>
           <span class="tech-tag">Jenkins</span>
-          <span class="tech-tag">InfluxDB</span>
-          <span class="tech-tag">Elasticsearch</span>
           <span class="tech-tag">Kibana</span>
           <span class="tech-tag">Grafana</span>
           <span class="tech-tag">Zabbix</span>
@@ -196,10 +211,10 @@
       <div class="wrap">
         <div class="section-head reveal">
           <div>
-            <p class="eyebrow">portfolio</p>
-            <h2>Proyectos</h2>
+            <p class="eyebrow" data-i18n="projects.eyebrow">portfolio</p>
+            <h2 data-i18n="projects.title">Proyectos</h2>
           </div>
-          <p class="section-desc">Selección de proyectos. El portfolio crece de forma gradual (Actualizaremos).</p>
+          <p class="section-desc" data-i18n="projects.desc">Selección de proyectos. El portfolio crece de forma gradual (Actualizaremos).</p>
         </div>
         <div class="project-list" data-project-list>
           <!-- Se genera dinámicamente desde data/projects.js -->
@@ -212,16 +227,16 @@
       <div class="wrap">
         <div class="section-head reveal">
           <div>
-            <p class="eyebrow">formación</p>
-            <h2>Formación</h2>
+            <p class="eyebrow" data-i18n="edu.eyebrow">formación</p>
+            <h2 data-i18n="edu.title">Formación</h2>
           </div>
         </div>
         <div class="edu-list">
           <div class="edu-block edu-block-single reveal">
             <div>
               <p class="edu-source">UTN FRLP</p>
-              <h3>Ingeniero en Sistemas de Información</h3>
-              <p class="project-desc">
+              <h3 data-i18n="edu.utn.title">Ingeniero en Sistemas de Información</h3>
+              <p class="project-desc" data-i18n="edu.utn.desc">
                 Formación de grado en Ingeniería en Sistemas de Información, Universidad
                 Tecnológica Nacional, Facultad Regional La Plata.
               </p>
@@ -232,7 +247,7 @@
             <div>
               <p class="edu-source">Udemy</p>
               <h3>Robot Framework Test Automation</h3>
-              <p class="project-desc">
+              <p class="project-desc" data-i18n="edu.udemy.desc">
                 Formación orientada a profundizar el diseño, organización y mantenimiento de
                 pruebas automatizadas con Robot Framework. Dictado por Bryan Lamb (Udemy), 5
                 horas, completado en julio de 2026.
@@ -243,6 +258,7 @@
               class="btn btn-ghost"
               target="_blank"
               rel="noopener noreferrer"
+              data-i18n="edu.udemy.cert"
               >Ver certificado</a
             >
           </div>
@@ -250,8 +266,8 @@
           <div class="edu-block reveal">
             <div>
               <p class="edu-source">CODAPLI · UTN FRLP</p>
-              <h3>Becario de Investigación — Práctica Supervisada</h3>
-              <p class="project-desc">
+              <h3 data-i18n="edu.codapli.title">Becario de Investigación — Práctica Supervisada</h3>
+              <p class="project-desc" data-i18n="edu.codapli.desc">
                 Práctica supervisada como becario en el Centro de Investigación CODAPLI (UTN
                 FRLP). Diseñé e implementé un sistema de sincronización inteligente de
                 semáforos mediante visión artificial (Haar Cascade, OpenCV, Raspberry Pi),
@@ -272,6 +288,7 @@
                 class="btn btn-ghost"
                 target="_blank"
                 rel="noopener noreferrer"
+                data-i18n="edu.codapli.project"
                 >Ver proyecto</a
               >
             </div>
@@ -279,9 +296,9 @@
 
           <div class="edu-block edu-block-single reveal">
             <div>
-              <p class="edu-source">Capacitación laboral</p>
+              <p class="edu-source" data-i18n="edu.python.source">Capacitación laboral</p>
               <h3>Python</h3>
-              <p class="project-desc">
+              <p class="project-desc" data-i18n="edu.python.desc">
                 Fundamentos del lenguaje Python aplicados a scripting y automatización,
                 adquiridos mediante una capacitación laboral orientada a testing.
               </p>
@@ -290,9 +307,9 @@
 
           <div class="edu-block edu-block-single reveal">
             <div>
-              <p class="edu-source">Curso</p>
+              <p class="edu-source" data-i18n="edu.linux.source">Curso</p>
               <h3>Linux</h3>
-              <p class="project-desc">
+              <p class="project-desc" data-i18n="edu.linux.desc">
                 Administración básica de sistemas Linux: línea de comandos, permisos y gestión
                 de procesos.
               </p>
@@ -305,8 +322,8 @@
     <!-- ============ CONTACTO ============ -->
     <section class="section contact" id="contacto">
       <div class="wrap reveal">
-        <p class="eyebrow">contacto</p>
-        <h2>¿Hablamos sobre testing?</h2>
+        <p class="eyebrow" data-i18n="contact.eyebrow">contacto</p>
+        <h2 data-i18n="contact.title">¿Hablamos sobre testing?</h2>
         <div class="contact-links">
           <a
             href="https://www.linkedin.com/in/yoel-almiron/"
@@ -326,12 +343,15 @@
   <footer class="site-footer">
     <div class="wrap">
       <span>© <span data-year>2026</span> Yoel Almirón</span>
-      <span>build: static </span>
+      <span data-i18n="footer.build">build: static </span>
     </div>
   </footer>
 
+  <script src="assets/theme.js"></script>
+  <script src="assets/i18n/dictionary.js"></script>
   <script src="data/projects.js"></script>
   <script src="script.js"></script>
+  <script src="assets/i18n/i18n.js"></script>
   <script src="assets/game/qa-game.js"></script>
 </body>
 </html>

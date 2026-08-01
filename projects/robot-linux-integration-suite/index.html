@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Robot Framework Linux Integration Testing — Yoel Almirón</title>
+  <title data-i18n="rlis.meta.title">Robot Framework Linux Integration Testing — Yoel Almirón</title>
   <meta
+    id="meta-description"
     name="description"
+    data-i18n-attr="content:rlis.meta.description"
     content="Suite de pruebas de integración con Robot Framework para validar el ciclo de vida completo de un servicio Linux empaquetado como .deb."
   />
   <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
@@ -18,22 +20,35 @@
   />
 
   <link rel="stylesheet" href="../../styles.css" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("portfolio_theme");
+        if (t === "light") document.documentElement.setAttribute("data-theme", "light");
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
   <div class="bg-grid" aria-hidden="true"></div>
 
   <header class="site-nav">
     <nav class="wrap" aria-label="Navegación">
-      <a href="../../index.html" class="nav-back">← volver al portfolio</a>
+      <a href="../../index.html" class="nav-back" data-i18n="nav.back">← volver al portfolio</a>
+      <div class="nav-controls">
+        <button class="lang-toggle" type="button" data-lang="es">ES</button>
+        <button class="lang-toggle" type="button" data-lang="en">EN</button>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Cambiar tema">☀️</button>
+      </div>
     </nav>
   </header>
 
   <main>
     <section class="project-hero">
       <div class="wrap">
-        <span class="status status-pass">Finalizado</span>
+        <span class="status status-pass" data-i18n="project.status.done">Finalizado</span>
         <h1>Robot Framework Linux Integration Testing</h1>
-        <p class="lead">
+        <p class="lead" data-i18n-html="rlis.hero.lead">
           Suite automatizada de pruebas de integración para validar el ciclo de vida completo
           de un servicio Linux distribuido como paquete Debian (<code>.deb</code>): instalación,
           arranque, actualización, logs, recuperación ante fallas y remoción limpia.
@@ -55,6 +70,7 @@
             class="btn btn-ghost"
             target="_blank"
             rel="noopener noreferrer"
+            data-i18n="detail.viewRepo"
             >Ver repositorio</a
           >
         </div>
@@ -64,8 +80,8 @@
     <section class="section">
       <div class="wrap">
         <dl class="detail-grid">
-          <dt>Contexto</dt>
-          <dd>
+          <dt data-i18n="detail.context">Contexto</dt>
+          <dd data-i18n-html="rlis.detail.context">
             El software distribuido a sistemas Linux empresariales suele empaquetarse como
             binarios Debian (<code>.deb</code>). Validar estos paquetes exige más que un test
             de API o de interfaz web: requiere verificar estados de instalación, scripts de
@@ -74,16 +90,16 @@
             sin archivos huérfanos.
           </dd>
 
-          <dt>Objetivo</dt>
-          <dd>
+          <dt data-i18n="detail.objective">Objetivo</dt>
+          <dd data-i18n-html="rlis.detail.objective">
             Construir una suite de integración end-to-end con Robot Framework que valide el
             ciclo de vida completo de un servicio Linux sintético (<code>satellite-telemetry</code>)
             empaquetado como <code>.deb</code>: desde la instalación limpia hasta la remoción,
             pasando por arranque, actualización in-place y recuperación ante fallas.
           </dd>
 
-          <dt>Riesgos considerados</dt>
-          <dd>
+          <dt data-i18n="detail.risks">Riesgos considerados</dt>
+          <dd data-i18n="rlis.detail.risks">
             Dependencias declaradas incorrectamente, archivos de configuración corruptos que
             deberían impedir el arranque del servicio, pérdida de configuraciones
             personalizadas del usuario tras una actualización, archivos huérfanos tras una
@@ -91,8 +107,8 @@
             del proceso.
           </dd>
 
-          <dt>Estrategia de pruebas</dt>
-          <dd>
+          <dt data-i18n="detail.strategy">Estrategia de pruebas</dt>
+          <dd data-i18n-html="rlis.detail.strategy">
             15 casos de prueba agrupados en 6 categorías: instalación, dependencias,
             configuración, ciclo de vida del servicio, actualización y remoción. Cada caso usa
             una librería custom de Robot Framework en Python (<code>LinuxPackageLibrary.py</code>)
@@ -100,7 +116,7 @@
             y peticiones HTTP reales contra el endpoint de salud del servicio.
           </dd>
 
-          <dt>Casos de prueba destacados</dt>
+          <dt data-i18n="detail.highlightedCases">Casos de prueba destacados</dt>
           <dd>
             <div class="tech-grid" style="margin-bottom: 0.75rem">
               <span class="tech-tag">TC-005 · Validación de esquema JSON de configuración</span>
@@ -109,11 +125,11 @@
               <span class="tech-tag">TC-014 · Config corrupta impide el arranque</span>
               <span class="tech-tag">TC-015 · Recuperación tras SIGKILL</span>
             </div>
-            El detalle completo de los 15 casos (TC-001 a TC-015) está documentado en el
-            <a href="https://github.com/yoelalmiron1997/robot-linux-integration-suite#casos-de-prueba" target="_blank" rel="noopener noreferrer">README del repositorio</a>.
+            <span data-i18n-html="rlis.detail.casesNote">El detalle completo de los 15 casos (TC-001 a TC-015) está documentado en el
+            <a href="https://github.com/yoelalmiron1997/robot-linux-integration-suite#casos-de-prueba" target="_blank" rel="noopener noreferrer">README del repositorio</a>.</span>
           </dd>
 
-          <dt>Tecnologías</dt>
+          <dt data-i18n="detail.technologies">Tecnologías</dt>
           <dd>
             <div class="tech-grid">
               <span class="tech-tag">Robot Framework</span>
@@ -125,9 +141,9 @@
             </div>
           </dd>
 
-          <dt>Evidencia</dt>
+          <dt data-i18n="detail.evidence">Evidencia</dt>
           <dd>
-            <div class="evidence-block">
+            <div class="evidence-block" data-i18n-html="rlis.detail.evidence">
               Cada corrida de CI empaqueta las versiones 1.0.0 y 1.1.0, ejecuta los 15 casos
               con permisos de root dentro de un contenedor Ubuntu/Debian, y publica
               <code>report.html</code>, <code>log.html</code> y <code>output.xml</code> como
@@ -136,15 +152,15 @@
             </div>
           </dd>
 
-          <dt>Resultado</dt>
-          <dd>
+          <dt data-i18n="detail.result">Resultado</dt>
+          <dd data-i18n="rlis.detail.result">
             Una suite reproducible con Docker que valida no solo el comportamiento funcional
             del servicio, sino también la integridad del paquete y su ciclo de vida completo
             como lo haría un equipo de QA validando un release antes de su distribución.
           </dd>
 
-          <dt>Aprendizajes</dt>
-          <dd>
+          <dt data-i18n="detail.learnings">Aprendizajes</dt>
+          <dd data-i18n="rlis.detail.learnings">
             Probar a nivel de sistema operativo (instalación, servicios, señales POSIX) exige
             diseñar keywords de Robot Framework que abstraigan comandos de shell sin perder
             precisión sobre qué se está validando en cada paso — la trazabilidad entre keyword
@@ -158,10 +174,13 @@
   <footer class="site-footer">
     <div class="wrap">
       <span>© <span data-year>2026</span> Yoel Almirón</span>
-      <a href="../../index.html" class="nav-back">← volver al portfolio</a>
+      <a href="../../index.html" class="nav-back" data-i18n="nav.back">← volver al portfolio</a>
     </div>
   </footer>
 
+  <script src="../../assets/theme.js"></script>
+  <script src="../../assets/i18n/dictionary.js"></script>
+  <script src="../../assets/i18n/i18n.js"></script>
   <script src="../../script.js"></script>
 </body>
 </html>

@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Healthcare FHIR Integration Testing — Yoel Almirón</title>
+  <title data-i18n="fhir.meta.title">Healthcare FHIR Integration Testing — Yoel Almirón</title>
   <meta
+    id="meta-description"
     name="description"
+    data-i18n-attr="content:fhir.meta.description"
     content="Validación de integraciones de sistemas de salud mediante recursos FHIR, pruebas de API y documentación de evidencia."
   />
   <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
@@ -18,22 +20,35 @@
   />
 
   <link rel="stylesheet" href="../../styles.css" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("portfolio_theme");
+        if (t === "light") document.documentElement.setAttribute("data-theme", "light");
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
   <div class="bg-grid" aria-hidden="true"></div>
 
   <header class="site-nav">
     <nav class="wrap" aria-label="Navegación">
-      <a href="../../index.html" class="nav-back">← volver al portfolio</a>
+      <a href="../../index.html" class="nav-back" data-i18n="nav.back">← volver al portfolio</a>
+      <div class="nav-controls">
+        <button class="lang-toggle" type="button" data-lang="es">ES</button>
+        <button class="lang-toggle" type="button" data-lang="en">EN</button>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Cambiar tema">☀️</button>
+      </div>
     </nav>
   </header>
 
   <main>
     <section class="project-hero">
       <div class="wrap">
-        <span class="status status-pass">Finalizado</span>
+        <span class="status status-pass" data-i18n="project.status.done">Finalizado</span>
         <h1>Healthcare FHIR Integration Testing</h1>
-        <p class="lead">
+        <p class="lead" data-i18n="fhir.hero.lead">
           Validación de integraciones de sistemas de salud mediante recursos FHIR, pruebas de API
           y documentación de evidencia.
         </p>
@@ -54,6 +69,7 @@
             class="btn btn-ghost"
             target="_blank"
             rel="noopener noreferrer"
+            data-i18n="detail.repo"
             >Repositorio</a
           >
           <a
@@ -61,6 +77,7 @@
             class="btn btn-ghost"
             target="_blank"
             rel="noopener noreferrer"
+            data-i18n="detail.deploy"
             >Deploy</a
           >
         </div>
@@ -70,36 +87,36 @@
     <section class="section">
       <div class="wrap">
         <dl class="detail-grid">
-          <dt>Contexto</dt>
-          <dd>
+          <dt data-i18n="detail.context">Contexto</dt>
+          <dd data-i18n="fhir.detail.context">
             Los sistemas de salud intercambian información clínica mediante el estándar FHIR
             (Fast Healthcare Interoperability Resources). Validar que estos recursos se generan,
             transmiten y consumen correctamente entre sistemas es una condición necesaria para la
             calidad de cualquier integración clínica.
           </dd>
 
-          <dt>Objetivo</dt>
-          <dd>
+          <dt data-i18n="detail.objective">Objetivo</dt>
+          <dd data-i18n="fhir.detail.objective">
             Diseñar y ejecutar un conjunto de pruebas automatizadas que validen la estructura, el
             contenido y el comportamiento de una integración basada en recursos FHIR (Patient,
             Observation, Encounter), documentando la evidencia obtenida en cada corrida.
           </dd>
 
-          <dt>Riesgos considerados</dt>
-          <dd>
+          <dt data-i18n="detail.risks">Riesgos considerados</dt>
+          <dd data-i18n="fhir.detail.risks">
             Recursos FHIR mal formados o incompletos, pérdida de trazabilidad entre identificadores
             de paciente, respuestas de API que no respetan el esquema esperado, y falta de
             evidencia reproducible ante un fallo de integración.
           </dd>
 
-          <dt>Estrategia de pruebas</dt>
-          <dd>
+          <dt data-i18n="detail.strategy">Estrategia de pruebas</dt>
+          <dd data-i18n="fhir.detail.strategy">
             Pruebas de API sobre los endpoints del servidor FHIR, validación de esquema de cada
             recurso, casos negativos ante datos inválidos y verificación de códigos de estado y
             payloads de respuesta con Robot Framework y la librería de peticiones HTTP.
           </dd>
 
-          <dt>Tecnologías</dt>
+          <dt data-i18n="detail.technologies">Tecnologías</dt>
           <dd>
             <div class="tech-grid">
               <span class="tech-tag">Python</span>
@@ -110,13 +127,17 @@
             </div>
           </dd>
 
-          <dt>Evidencia</dt>
+          <dt data-i18n="detail.evidence">Evidencia</dt>
           <dd>
-            <div class="evidence-block">Evidencia pendiente de publicación</div>
+            <div class="evidence-block" data-i18n-html="fhir.detail.evidence">
+              La API está desplegada y accesible públicamente, con su documentación interactiva
+              Swagger/OpenAPI generada en vivo a partir de los propios endpoints. Ver la
+              <a href="https://healthcare-fhir-api.onrender.com/docs" target="_blank" rel="noopener noreferrer">documentación de la API en vivo</a>.
+            </div>
           </dd>
 
-          <dt>Aprendizajes</dt>
-          <dd>
+          <dt data-i18n="detail.learnings">Aprendizajes</dt>
+          <dd data-i18n="fhir.detail.learnings">
             Trabajar con estándares clínicos exige pruebas más estrictas sobre la forma de los
             datos, no solo sobre el comportamiento funcional: validar un recurso FHIR es, en gran
             parte, validar contratos de datos.
@@ -129,10 +150,13 @@
   <footer class="site-footer">
     <div class="wrap">
       <span>© <span data-year>2026</span> Yoel Almirón</span>
-      <a href="../../index.html" class="nav-back">← volver al portfolio</a>
+      <a href="../../index.html" class="nav-back" data-i18n="nav.back">← volver al portfolio</a>
     </div>
   </footer>
 
+  <script src="../../assets/theme.js"></script>
+  <script src="../../assets/i18n/dictionary.js"></script>
+  <script src="../../assets/i18n/i18n.js"></script>
   <script src="../../script.js"></script>
 </body>
 </html>
